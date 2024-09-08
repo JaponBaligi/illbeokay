@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6sa4gfeyy7kk"]
+
+[ext_resource type="Script" path="res://scripts/item_option.gd" id="1_7pi1t"]
+[ext_resource type="Theme" uid="uid://dbec0g33lrhya" path="res://Textures/Themes/upgradebutton.tres" id="1_xf0gf"]
+[ext_resource type="Texture2D" uid="uid://v6ltbf6hgyk2" path="res://Textures/Items/Weapons/sorcerer_staff.png" id="2_ixmuh"]
+[ext_resource type="FontFile" uid="uid://djaf2ki6u5wo" path="res://Textures/GUI/Text-Fonts/Caramel-Regular.otf" id="3_wuq3d"]
+
+[node name="item_option" type="Button"]
+custom_minimum_size = Vector2(180, 50)
+anchors_preset = -1
+anchor_right = 0.281
+anchor_bottom = 0.139
+offset_left = -1.0
+offset_right = -0.840012
+offset_bottom = -0.0400047
+theme = ExtResource("1_xf0gf")
+script = ExtResource("1_7pi1t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(23, 22)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 33.0
+offset_bottom = 34.0
+color = Color(0.538517, 0.471987, 0.302196, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_right = 115.0
+offset_bottom = 110.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ixmuh")
+
+[node name="label_name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 10.0
+offset_right = 83.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wuq3d")
+text = "Name"
+
+[node name="label_level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 10.0
+offset_right = 169.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wuq3d")
+text = "Level :"
+vertical_alignment = 1
+
+[node name="label_description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 27.0
+offset_right = 172.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wuq3d")
+theme_override_font_sizes/font_size = 8
+text = "Description of Item"
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="label_name" to="." method="_on_label_name_mouse_entered"]

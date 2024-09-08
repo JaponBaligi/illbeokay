@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dbec0g33lrhya"]
+
+[ext_resource type="Texture2D" uid="uid://bh2hvitbaf0cv" path="res://Textures/GUI/UI-Elements/upgrade-ui/upgrade_column.png" id="1_bwtph"]
+[ext_resource type="Texture2D" uid="uid://bn6605qcaa1ay" path="res://Textures/GUI/UI-Elements/upgrade-ui/upgrade_hover.png" id="1_y2g8p"]
+[ext_resource type="FontFile" uid="uid://djaf2ki6u5wo" path="res://Textures/GUI/Text-Fonts/Caramel-Regular.otf" id="2_v6r5q"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijrs3"]
+texture = ExtResource("1_y2g8p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qopdq"]
+texture = ExtResource("1_bwtph")
+
+[resource]
+default_font = ExtResource("2_v6r5q")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/fonts/font = ExtResource("2_v6r5q")
+Button/styles/hover = SubResource("StyleBoxTexture_ijrs3")
+Button/styles/normal = SubResource("StyleBoxTexture_qopdq")

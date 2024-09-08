@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dckqrbgrjon88"]
+
+[ext_resource type="FontFile" uid="uid://bcrlkl78tdw67" path="res://Textures/GUI/Text-Fonts/Keep Cheese.otf" id="1_r6qro"]
+[ext_resource type="Script" path="res://scripts/basic_button.gd" id="2_sy3rg"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(80, 30)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("1_r6qro")
+theme_override_font_sizes/font_size = 20
+text = "Example"
+script = ExtResource("2_sy3rg")
+
+[node name="snd_hover" type="AudioStreamPlayer2D" parent="."]
+
+[node name="snd_click" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="finished" from="snd_click" to="." method="_on_snd_click_finished"]

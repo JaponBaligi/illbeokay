@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dicn8k4s1xwii"]
+
+[ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="1_un3en"]
+[ext_resource type="Texture2D" uid="uid://rqlcq33nedrx" path="res://Textures/GUI/UI-Elements/options-ui/options_menu_button_selected.png" id="2_by2rx"]
+[ext_resource type="Texture2D" uid="uid://dh3j7mmcheqbc" path="res://Textures/GUI/UI-Elements/options-ui/options_menu_button.png" id="2_mq8xm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aixu0"]
+texture = ExtResource("2_by2rx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_taio0"]
+texture = ExtResource("2_by2rx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_255xh"]
+texture = ExtResource("2_mq8xm")
+
+[resource]
+default_font = ExtResource("1_un3en")
+default_font_size = 13
+Button/fonts/font = ExtResource("1_un3en")
+Button/styles/focus = SubResource("StyleBoxTexture_aixu0")
+Button/styles/hover = SubResource("StyleBoxTexture_taio0")
+Button/styles/normal = SubResource("StyleBoxTexture_255xh")

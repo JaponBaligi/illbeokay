@@ -1,0 +1,294 @@
+[gd_scene load_steps=20 format=3 uid="uid://b4mjy62osxtg6"]
+
+[ext_resource type="Theme" uid="uid://8ic7fva1q061" path="res://Textures/Themes/options.tres" id="1_26re1"]
+[ext_resource type="Script" path="res://scripts/settings_tab_container.gd" id="1_hr8c5"]
+[ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="1_vmdwk"]
+[ext_resource type="Texture2D" uid="uid://dx7u5nqyreltk" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-normal.png" id="3_bfufj"]
+[ext_resource type="Texture2D" uid="uid://bje8asfsfi703" path="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button.png" id="3_raj32"]
+[ext_resource type="Texture2D" uid="uid://c13y0ov4dbh3l" path="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button_pressed.png" id="4_ak0pe"]
+[ext_resource type="Texture2D" uid="uid://wlwedlr81mvd" path="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button_hover.png" id="4_w5xnr"]
+[ext_resource type="Texture2D" uid="uid://7vrb77ndyku8" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-selected.png" id="4_wh24i"]
+[ext_resource type="Texture2D" uid="uid://cffa5ouv82itt" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-hover.png" id="5_e208s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdbt3"]
+texture = ExtResource("3_bfufj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dcdx2"]
+texture = ExtResource("4_wh24i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8tss"]
+texture = ExtResource("5_e208s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2pfl"]
+texture = ExtResource("3_bfufj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agwbd"]
+texture = ExtResource("4_wh24i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_athv4"]
+texture = ExtResource("5_e208s")
+
+[sub_resource type="Theme" id="Theme_lg06o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tvc7a"]
+texture = ExtResource("3_raj32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a0hb2"]
+texture = ExtResource("4_w5xnr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_liwmf"]
+texture = ExtResource("4_ak0pe")
+
+[node name="Settings_Tab_Container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 51.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_hr8c5")
+metadata/_edit_vertical_guides_ = [315.0, 149.0, 460.0, 199.0, 565.0, 341.0]
+metadata/_edit_horizontal_guides_ = [199.0, 157.0, 239.0, 145.0, 136.0]
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_26re1")
+theme_override_fonts/font = ExtResource("1_vmdwk")
+theme_override_font_sizes/font_size = 18
+tab_alignment = 1
+current_tab = 2
+
+[node name="Sound" type="TabBar" parent="TabContainer"]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_26re1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 44
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Master Sound"
+
+[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Music Sound"
+
+[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "SFX Sound"
+
+[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Music Type"
+
+[node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_26re1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 38
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Resolution"
+
+[node name="Label2" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Screen Mode"
+
+[node name="Label3" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "FPS Limit"
+
+[node name="Controls" type="TabBar" parent="TabContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_26re1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 26
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="lbl_aimmode" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Aiming Mode"
+
+[node name="automatic_checkbox" type="CheckBox" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_aimmode"]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 1.0
+offset_right = 315.0
+offset_bottom = 17.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_pdbt3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dcdx2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a8tss")
+
+[node name="auto" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_aimmode/automatic_checkbox"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = -1.0
+offset_right = 109.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Automatic"
+
+[node name="manual_checkbox" type="CheckBox" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_aimmode"]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 1.0
+offset_right = 438.0
+offset_bottom = 17.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_y2pfl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_agwbd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_athv4")
+
+[node name="manual" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_aimmode/manual_checkbox"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -1.0
+offset_right = 81.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Manual"
+
+[node name="lbl_keybind" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Key Bindings"
+
+[node name="Button" type="Button" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_keybind"]
+layout_mode = 2
+offset_left = 364.0
+offset_top = -5.0
+offset_right = 469.0
+offset_bottom = 25.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_lg06o")
+theme_override_fonts/font = ExtResource("1_vmdwk")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxTexture_tvc7a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a0hb2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_liwmf")
+text = "Edit Keymap"
+
+[node name="lbl_sens" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vmdwk")
+text = "Mouse Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_sens"]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 1.0
+offset_right = 521.0
+offset_bottom = 25.0
+
+[node name="Credits" type="TabBar" parent="TabContainer"]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_26re1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Credits/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Credits/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "123456789"
+
+[node name="Label2" type="Label" parent="TabContainer/Credits/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "123456789"
+
+[node name="Label3" type="Label" parent="TabContainer/Credits/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "123456789"
+
+[connection signal="change_aim_mode" from="." to="." method="_on_change_aim_mode"]

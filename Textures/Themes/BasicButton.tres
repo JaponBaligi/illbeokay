@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://o1e7aarsxr6x"]
+
+[ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="1_3wkcc"]
+[ext_resource type="Texture2D" uid="uid://b6pv1617l28a" path="res://Textures/GUI/UI-Elements/start-menu/start-menu-button.png" id="2_iahjn"]
+[ext_resource type="Texture2D" uid="uid://dnxot3aw3dxja" path="res://Textures/GUI/UI-Elements/start-menu/button-hover.png" id="2_seqmq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ublg"]
+texture = ExtResource("2_seqmq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lhvgc"]
+texture = ExtResource("2_iahjn")
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_3wkcc")
+Button/styles/hover = SubResource("StyleBoxTexture_0ublg")
+Button/styles/normal = SubResource("StyleBoxTexture_lhvgc")

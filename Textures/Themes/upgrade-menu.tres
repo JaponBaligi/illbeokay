@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://hx71mn4je0ka"]
+
+[ext_resource type="Texture2D" uid="uid://be7v0hisy7xhp" path="res://Textures/GUI/UI-Elements/upgrade-ui/upgrademenu.png" id="1_kk0rn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_42hcl"]
+texture = ExtResource("1_kk0rn")
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_42hcl")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5u5clbryprtr"]
+
+[ext_resource type="Texture2D" uid="uid://l3uy7n4iricr" path="res://Textures/Levels/lab-ground1.png" id="1_nl3wh"]
+[ext_resource type="PackedScene" uid="uid://dvh4bkk5eayqc" path="res://scenes/player.tscn" id="2_l7cjv"]
+[ext_resource type="PackedScene" uid="uid://d0oqxnu38of5v" path="res://scenes/enemy_spawner.tscn" id="3_2ongh"]
+[ext_resource type="PackedScene" uid="uid://82maahqg5rrs" path="res://scenes/enemy_slime.tscn" id="4_pesof"]
+[ext_resource type="Script" path="res://scripts/spawn_info.gd" id="5_syvjt"]
+[ext_resource type="PackedScene" uid="uid://sq40undo10gk" path="res://scenes/exp_orb.tscn" id="6_kmq1x"]
+
+[sub_resource type="Resource" id="Resource_v28u8"]
+script = ExtResource("5_syvjt")
+time_start = 5
+time_end = 1000
+enemy = ExtResource("4_pesof")
+enemy_num = 5
+enemy_spawn_delay = 1
+
+[node name="world" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("1_nl3wh")
+region_enabled = true
+region_rect = Rect2(0, 0, 4096, 4096)
+
+[node name="Player" parent="." instance=ExtResource("2_l7cjv")]
+position = Vector2(0, 12)
+motion_mode = 1
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_2ongh")]
+spawns = Array[ExtResource("5_syvjt")]([SubResource("Resource_v28u8")])
+
+[node name="Loot" type="Node" parent="." groups=["loot"]]
+
+[node name="ExpOrb" parent="." instance=ExtResource("6_kmq1x")]
+position = Vector2(59, -39)
+exp = 421

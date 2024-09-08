@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://8ic7fva1q061"]
+
+[ext_resource type="Texture2D" uid="uid://cd2bldhggg5ml" path="res://Textures/GUI/UI-Elements/options-ui/options_panel.png" id="1_fdm1y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmhkf"]
+texture = ExtResource("1_fdm1y")
+expand_margin_top = 2.0
+
+[resource]
+TabContainer/styles/panel = SubResource("StyleBoxTexture_hmhkf")

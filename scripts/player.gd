@@ -421,3 +421,7 @@ func death():
 func _on_btn_menu_pressed():
 	get_tree().paused = false
 	var _level = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func test():
+	pass

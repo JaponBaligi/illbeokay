@@ -18,8 +18,7 @@ config/icon="res://Textures/icon.svg"
 [autoload]
 
 UpgradeDb="*res://scenes/upgrade_db.tscn"
-OptionsMenu="*res://scenes/options_menu.tscn"
-SettingsTabContainer="*res://scenes/settings_tab_container.tscn"
+GameData="*res://scripts/GameData.gd"
 
 [display]
 

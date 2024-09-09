@@ -7,6 +7,7 @@ var damage = 5
 var knockback_amount = 100
 var attack_size = 1.0
 
+var target = Vector2.ZERO
 var angle = Vector2.ZERO  # Yön vektörü
 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -14,8 +15,11 @@ var angle = Vector2.ZERO  # Yön vektörü
 signal remove_from_array(object)
 
 func _ready():
+	# Hedef varsa açıya dönüştür
+	if target != Vector2.ZERO:
+		angle = (target - global_position).normalized()
 	if angle != Vector2.ZERO:
-		rotation = angle.angle()  # hedefe doğru döndür
+		rotation = angle.angle()  # Hedefe doğru döndür
 	sprite.play("default")
 	# büyüklüğünü seviyeye göre ayarla
 	match level:

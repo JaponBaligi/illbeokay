@@ -20,7 +20,7 @@
 [ext_resource type="Theme" uid="uid://hx71mn4je0ka" path="res://Textures/Themes/upgrade-menu.tres" id="16_r2hlk"]
 [ext_resource type="AudioStream" uid="uid://ci0yh8puljjyw" path="res://Audio/game-over.WAV" id="18_swnpd"]
 [ext_resource type="Theme" uid="uid://o1e7aarsxr6x" path="res://Textures/Themes/BasicButton.tres" id="19_fllf1"]
-[ext_resource type="PackedScene" uid="uid://okd1vduvsily" path="res://scenes/options_menu.tscn" id="21_vkru8"]
+[ext_resource type="PackedScene" uid="uid://okd1vduvsily" path="res://scenes/options_menu.tscn" id="21_c3yk7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgun4"]
 atlas = ExtResource("2_hkvjp")
@@ -554,7 +554,7 @@ text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionsMenu" parent="." instance=ExtResource("21_vkru8")]
+[node name="OptionsMenu" parent="." instance=ExtResource("21_c3yk7")]
 visible = false
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
@@ -570,3 +570,5 @@ visible = false
 [connection signal="pressed" from="GUILayer/GUI/DeathPanel/btn_menu" to="." method="_on_btn_menu_pressed"]
 
 [editable path="HurtBox"]
+[editable path="OptionsMenu"]
+[editable path="OptionsMenu/MarginContainer/VBoxContainer/Settings_Tab_Container"]

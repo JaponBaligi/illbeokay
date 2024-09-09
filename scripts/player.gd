@@ -5,7 +5,7 @@ var hp = 80
 var maxhp = 80
 var last_movement = Vector2.UP
 var time = 0
-var aiming_mode = "manual"
+var aiming_mode = "automatic"
 var exp = 0
 var exp_level = 1
 var total_exp = 0
@@ -76,7 +76,6 @@ var enemy_close = []
 @onready var sndLose = get_node("%snd_lose")
 
 # OPTIONS SECTION
-
 @onready var settings_tab_container = get_node("OptionsMenu/MarginContainer/VBoxContainer/Settings_Tab_Container")
 
 func _ready():
@@ -88,7 +87,8 @@ func _ready():
 	attack()
 	set_expbar(exp, calculate_expcap())
 	_on_hurt_box_hurt(0,0,0)
-	settings_tab_container.connect("change_aim_mode", Callable(self,"_on_change_aim_mode"))
+	aiming_mode = GameData.aiming_mode
+	print("Aiming mode loaded:", aiming_mode)
 
 func _physics_process(delta):
 	movement()
@@ -194,8 +194,9 @@ func spawn_staff():
 		if i.has_method("update_staff"):
 			i.update_staff()
 
-func set_aiming_mode(mode: String):
-	aiming_mode = mode
+func _on_change_aim_mode(mode: String):
+	aiming_mode = GameData.aiming_mode
+	print("Aiming mode loaded:", aiming_mode)
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -421,7 +422,3 @@ func death():
 func _on_btn_menu_pressed():
 	get_tree().paused = false
 	var _level = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
-
-func test():
-	pass

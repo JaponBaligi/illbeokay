@@ -62,3 +62,5 @@ size_flags_vertical = 8
 theme = ExtResource("4_u2226")
 theme_override_fonts/font = ExtResource("2_gn1x8")
 text = "Main Menu"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/btn_exitmainmenu" to="." method="_on_btn_exitmainmenu_button_down"]

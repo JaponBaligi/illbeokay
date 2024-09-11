@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bje8asfsfi703"
-path="res://.godot/imported/edit_keys_button.png-8444fc3bc94631f2fa8d4d73f683e7f7.ctex"
+uid="uid://cs8fpdmlilju5"
+path="res://.godot/imported/slider_bar.png-0106004f78b3f46d9ae55984d24e1e4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button.png"
-dest_files=["res://.godot/imported/edit_keys_button.png-8444fc3bc94631f2fa8d4d73f683e7f7.ctex"]
+source_file="res://Textures/GUI/UI-Elements/options-ui/slider_bar.png"
+dest_files=["res://.godot/imported/slider_bar.png-0106004f78b3f46d9ae55984d24e1e4d.ctex"]
 
 [params]
 

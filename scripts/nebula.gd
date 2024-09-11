@@ -57,7 +57,7 @@ func _physics_process(delta):
 	if delta == 0:
 		return
 	position += angle.normalized() * speed * delta
-	if global_position.distance_to(target) < 10:
+	if global_position.distance_to(target) < 0:
 		queue_free()
 		
 func enemy_hit(charge = 1):

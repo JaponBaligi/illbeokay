@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://okd1vduvsily"]
+[gd_scene load_steps=6 format=3 uid="uid://okd1vduvsily"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_v2m4e"]
 [ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="2_gn1x8"]
 [ext_resource type="PackedScene" uid="uid://b4mjy62osxtg6" path="res://scenes/settings_tab_container.tscn" id="3_oibaa"]
+[ext_resource type="PackedScene" uid="uid://dckqrbgrjon88" path="res://scenes/basic_button.tscn" id="4_34nfc"]
 [ext_resource type="Theme" uid="uid://dicn8k4s1xwii" path="res://Textures/Themes/options_exitmenu_button.tres" id="4_u2226"]
 
 [node name="OptionsMenu" type="Control"]
@@ -53,14 +54,14 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
+metadata/_edit_vertical_guides_ = [315.0, 149.0, 460.0, 199.0, 565.0, 341.0]
+metadata/_edit_horizontal_guides_ = [199.0, 157.0, 239.0, 145.0, 136.0]
 
-[node name="btn_exitmainmenu" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(80, 25)
+[node name="btn_exitmainmenu" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_34nfc")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource("4_u2226")
 theme_override_fonts/font = ExtResource("2_gn1x8")
+theme_override_font_sizes/font_size = 14
 text = "Main Menu"
-
-[connection signal="button_down" from="MarginContainer/VBoxContainer/btn_exitmainmenu" to="." method="_on_btn_exitmainmenu_button_down"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uyarr2fq5x71"
-path="res://.godot/imported/sensbar.png-0eba7a2d336302a5112cd10b1a6a6cd6.ctex"
+uid="uid://dys1tlns4yota"
+path="res://.godot/imported/progress-light-green.png-481a628d62bac3305910fae08be25500.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/GUI/UI-Elements/options-ui/sensbar.png"
-dest_files=["res://.godot/imported/sensbar.png-0eba7a2d336302a5112cd10b1a6a6cd6.ctex"]
+source_file="res://Textures/GUI/UI-Elements/options-ui/progress-light-green.png"
+dest_files=["res://.godot/imported/progress-light-green.png-481a628d62bac3305910fae08be25500.ctex"]
 
 [params]
 

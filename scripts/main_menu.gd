@@ -36,4 +36,3 @@ func handle_connecting_signals():
 	quit_button.button_down.connect(_on_btn_quit_pressed)
 	options_button.button_down.connect(_on_btn_options_pressed)
 	options_menu.quit_options_menu.connect(_on_btn_exitmainmenu_pressed)
-

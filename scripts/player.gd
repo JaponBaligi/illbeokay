@@ -6,6 +6,7 @@ var maxhp = 80
 var last_movement = Vector2.UP
 var time = 0
 var aiming_mode = "automatic"
+@warning_ignore("shadowed_global_identifier")
 var exp = 0
 var exp_level = 1
 var total_exp = 0
@@ -82,19 +83,18 @@ func _ready():
 	reload_timer.set_wait_time(1.5)
 	reload_timer.connect("timeout", Callable(self,"_on_reload_timer_timeout"))
 	add_child(reload_timer)
-	
 	upgrade_character("fireball1")
 	attack()
 	set_expbar(exp, calculate_expcap())
 	_on_hurt_box_hurt(0,0,0)
 	aiming_mode = GameData.aiming_mode
-	print("Aiming mode loaded:", aiming_mode)
+	get_node("/root/MusicModeChanger").start_music()
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	movement()
 
 func _input(event):
-	# Eğer fare tıklaması yapılırsa ve mermi varsa
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if aiming_mode == "manual" and fireball_ammo > 0:
 			shoot_manual()
@@ -151,7 +151,7 @@ func _on_fire_ball_attack_timer_timeout():
 			if closest_enemy:
 				fireball_attack.target = closest_enemy.global_position
 			else:
-				fireball_attack.target = global_position + last_movement * 100  # Eğer düşman yoksa ileri doğru ateşle
+				fireball_attack.target = global_position + last_movement * 100 
 			fireball_attack.level = fireball_level
 			add_child(fireball_attack)
 			fireball_ammo -= 1
@@ -188,12 +188,12 @@ func spawn_staff():
 		staff_spawn.global_position = global_position
 		staffBase.add_child(staff_spawn)
 		count_spawns -= 1
-	#Update Upgraded Staff
 	var get_staff = staffBase.get_children()
 	for i in get_staff:
 		if i.has_method("update_staff"):
 			i.update_staff()
 
+@warning_ignore("unused_parameter")
 func _on_change_aim_mode(mode: String):
 	aiming_mode = GameData.aiming_mode
 	print("Aiming mode loaded:", aiming_mode)
@@ -206,7 +206,7 @@ func get_random_target():
 
 func get_closest_enemy():
 	var closest_enemy = null
-	var closest_distance = INF  # Sonsuz bir mesafe başlangıçta
+	var closest_distance = INF  
 	for enemy in enemy_close:
 		var distance_to_enemy = global_position.distance_to(enemy.global_position)
 		if distance_to_enemy < closest_distance:
@@ -415,10 +415,10 @@ func death():
 		lblResult.text = "You WON!!!"
 		sndVictory.play()
 	else:
-		lblResult.text = "Next Time,Buddy!"
+		lblResult.text = "Next Time Buddy!"
 		sndLose.play()
-
 
 func _on_btn_menu_pressed():
 	get_tree().paused = false
+	get_node("/root/MusicModeChanger").stop_music()
 	var _level = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

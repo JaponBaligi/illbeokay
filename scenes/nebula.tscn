@@ -1,7 +1,8 @@
-[gd_scene load_steps=66 format=3 uid="uid://cax5d71182gyj"]
+[gd_scene load_steps=67 format=3 uid="uid://cax5d71182gyj"]
 
 [ext_resource type="Script" path="res://scripts/nebula.gd" id="1_3xsh6"]
 [ext_resource type="Texture2D" uid="uid://bwc54fax6oo27" path="res://Textures/Items/Skills/12_nebula_spritesheet.png" id="2_um3hk"]
+[ext_resource type="AudioStream" uid="uid://bu62s4ft6bbnr" path="res://Audio/sfx/nebula.wav" id="3_6p4hi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vosn4"]
 atlas = ExtResource("2_um3hk")
@@ -466,5 +467,11 @@ debug_color = Color(0.629073, 0, 0.302149, 0.42)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 20.0
 autostart = true
+
+[node name="snd_nebula_attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6p4hi")
+volume_db = -20.0
+autoplay = true
+bus = &"Sfx"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dckqrbgrjon88"]
+[gd_scene load_steps=4 format=3 uid="uid://dckqrbgrjon88"]
 
 [ext_resource type="FontFile" uid="uid://bcrlkl78tdw67" path="res://Textures/GUI/Text-Fonts/Keep Cheese.otf" id="1_r6qro"]
 [ext_resource type="Script" path="res://scripts/basic_button.gd" id="2_sy3rg"]
+[ext_resource type="AudioStream" uid="uid://c6yem3ovel2ef" path="res://Audio/sfx/click.wav" id="4_mwvaf"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(80, 30)
@@ -12,9 +13,10 @@ theme_override_font_sizes/font_size = 20
 text = "Example"
 script = ExtResource("2_sy3rg")
 
-[node name="snd_hover" type="AudioStreamPlayer2D" parent="."]
-
 [node name="snd_click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mwvaf")
+volume_db = -10.0
+bus = &"Sfx"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,14 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4mjy62osxtg6"]
+[gd_scene load_steps=19 format=3 uid="uid://b4mjy62osxtg6"]
 
 [ext_resource type="Theme" uid="uid://8ic7fva1q061" path="res://Textures/Themes/options.tres" id="1_26re1"]
 [ext_resource type="Script" path="res://scripts/settings_tab_container.gd" id="1_hr8c5"]
 [ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="1_vmdwk"]
 [ext_resource type="Texture2D" uid="uid://dx7u5nqyreltk" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-normal.png" id="3_bfufj"]
-[ext_resource type="Texture2D" uid="uid://bje8asfsfi703" path="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button.png" id="3_raj32"]
-[ext_resource type="Texture2D" uid="uid://c13y0ov4dbh3l" path="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button_pressed.png" id="4_ak0pe"]
-[ext_resource type="Texture2D" uid="uid://wlwedlr81mvd" path="res://Textures/GUI/UI-Elements/options-ui/edit_keys_button_hover.png" id="4_w5xnr"]
+[ext_resource type="PackedScene" uid="uid://b206h4yf17j4v" path="res://scenes/audio_slider_settings.tscn" id="4_r04n0"]
 [ext_resource type="Texture2D" uid="uid://7vrb77ndyku8" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-selected.png" id="4_wh24i"]
 [ext_resource type="Texture2D" uid="uid://cffa5ouv82itt" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-hover.png" id="5_e208s"]
+[ext_resource type="PackedScene" uid="uid://dxb7itt5q61sh" path="res://scenes/window_mode_button.tscn" id="8_47cne"]
+[ext_resource type="PackedScene" uid="uid://3vtk1c761tvj" path="res://scenes/resolution_mode_button.tscn" id="9_gajix"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t4xsu"]
+texture = ExtResource("3_bfufj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2888r"]
+texture = ExtResource("4_wh24i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_34smv"]
+texture = ExtResource("5_e208s")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdbt3"]
 texture = ExtResource("3_bfufj")
@@ -28,17 +37,6 @@ texture = ExtResource("4_wh24i")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_athv4"]
 texture = ExtResource("5_e208s")
 
-[sub_resource type="Theme" id="Theme_lg06o"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tvc7a"]
-texture = ExtResource("3_raj32")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a0hb2"]
-texture = ExtResource("4_w5xnr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_liwmf"]
-texture = ExtResource("4_ak0pe")
-
 [node name="Settings_Tab_Container" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -50,8 +48,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_hr8c5")
-metadata/_edit_vertical_guides_ = [315.0, 149.0, 460.0, 199.0, 565.0, 341.0]
-metadata/_edit_horizontal_guides_ = [199.0, 157.0, 239.0, 145.0, 136.0]
+metadata/_edit_vertical_guides_ = [315.0, 149.0, 460.0, 199.0, 565.0, 341.0, 131.0, 456.0, 560.0, 402.0, 405.0, 369.0, 405.0, 399.0, 230.0, 291.0, 263.0, 229.0, 475.0, 476.0]
+metadata/_edit_horizontal_guides_ = [199.0, 157.0, 239.0, 145.0, 136.0, 262.0, 260.0, 212.0, 245.0, 226.0, 206.0, 178.0, 118.0, 218.0, 137.0, 117.0, 113.0, 95.0, 230.0, 157.0, 157.0]
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -64,10 +62,8 @@ theme = ExtResource("1_26re1")
 theme_override_fonts/font = ExtResource("1_vmdwk")
 theme_override_font_sizes/font_size = 18
 tab_alignment = 1
-current_tab = 2
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
-visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("1_26re1")
@@ -77,7 +73,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 44
@@ -85,34 +80,90 @@ theme_override_constants/margin_top = 44
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Sound/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
-alignment = 1
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
-[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 40
+
+[node name="Audio_Slider_Settings" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_r04n0")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Audio_Slider_Settings2" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_r04n0")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="Audio_Slider_Settings3" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_r04n0")]
+layout_mode = 2
+bus_name = "Sfx"
+
+[node name="checkbox_chill" type="CheckBox" parent="TabContainer/Sound"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 162.0
+offset_right = 307.0
+offset_bottom = 178.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_t4xsu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2888r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_34smv")
+
+[node name="Label" type="Label" parent="TabContainer/Sound/checkbox_chill"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Master Sound"
+text = "Chill"
 
-[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="checkbox_hyped" type="CheckBox" parent="TabContainer/Sound"]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 162.0
+offset_right = 385.0
+offset_bottom = 178.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_t4xsu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2888r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_34smv")
+
+[node name="Label" type="Label" parent="TabContainer/Sound/checkbox_hyped"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Music Sound"
+text = "Hyped"
 
-[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="TabContainer/Sound"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 162.0
+offset_right = 150.0
+offset_bottom = 180.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "SFX Sound"
+text = "Music Type :"
 
-[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Music Type"
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Sound"]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 162.0
+offset_right = 231.0
+offset_bottom = 179.0
+
+[node name="VSeparator2" type="VSeparator" parent="TabContainer/Sound"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 162.0
+offset_right = 477.0
+offset_bottom = 179.0
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 visible = false
@@ -132,30 +183,32 @@ theme_override_constants/margin_top = 34
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Graphics/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 38
-alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/separation = 86
+
+[node name="Window_Mode_Button" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_47cne")]
+layout_mode = 2
+
+[node name="Resolution_Mode_Button" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("9_gajix")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Graphics"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 154.0
+offset_right = 219.0
+offset_bottom = 168.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Resolution"
-
-[node name="Label2" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Screen Mode"
-
-[node name="Label3" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "FPS Limit"
+theme_override_font_sizes/font_size = 10
+text = "(only effects on windowed modes)"
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("1_26re1")
@@ -221,40 +274,11 @@ offset_bottom = 17.0
 theme_override_fonts/font = ExtResource("1_vmdwk")
 text = "Manual"
 
-[node name="lbl_keybind" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
+[node name="lbl_instructions" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Key Bindings"
-
-[node name="Button" type="Button" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_keybind"]
-layout_mode = 2
-offset_left = 364.0
-offset_top = -5.0
-offset_right = 469.0
-offset_bottom = 25.0
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme = SubResource("Theme_lg06o")
-theme_override_fonts/font = ExtResource("1_vmdwk")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxTexture_tvc7a")
-theme_override_styles/hover = SubResource("StyleBoxTexture_a0hb2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_liwmf")
-text = "Edit Keymap"
-
-[node name="lbl_sens" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Mouse Sensitivity"
-
-[node name="HSlider" type="HSlider" parent="TabContainer/Controls/MarginContainer/VBoxContainer/lbl_sens"]
-layout_mode = 0
-offset_left = 297.0
-offset_top = 1.0
-offset_right = 521.0
-offset_bottom = 25.0
+text = "W, A, S, D = MOVE     use MOUSE FOR AIM (for manual of course)"
 
 [node name="Credits" type="TabBar" parent="TabContainer"]
 visible = false

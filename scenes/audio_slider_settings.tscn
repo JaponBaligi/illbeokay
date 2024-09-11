@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://b206h4yf17j4v"]
+
+[ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="1_gd18i"]
+[ext_resource type="Script" path="res://scripts/audio_slider_settings.gd" id="1_sib8r"]
+
+[node name="Audio_Slider_Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sib8r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 798.0
+offset_bottom = 17.0
+theme_override_constants/separation = 61
+
+[node name="lbl_audioname" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(122, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_gd18i")
+theme_override_font_sizes/font_size = 16
+text = "Master Volume"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 16)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="lbl_audionum" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_gd18i")
+theme_override_font_sizes/font_size = 16
+text = "55.4"

@@ -11,7 +11,7 @@ var knockback = Vector2.ZERO
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 @onready var sprite = $AnimatedSprite2D
-@onready var snd_hit = $snd_hit
+@onready var snd_hit = $bat_strong_death
 @onready var hitBox = $HitBox
 
 var exp_orb = preload("res://scenes/exp_orb.tscn")
@@ -50,4 +50,4 @@ func _on_hurt_box_hurt(damage, angle, knockback_amount):
 	if hp <= 0:
 		death()
 	else:
-		pass#buraya ölüm sesi konulacak
+		snd_hit.play()

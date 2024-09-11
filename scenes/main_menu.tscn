@@ -952,6 +952,7 @@ layout_mode = 1
 stream = ExtResource("8_81lr3")
 volume_db = -10.0
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="btn_options" to="." method="_on_btn_options_pressed"]
 [connection signal="click_end" from="btn_play" to="." method="_on_btn_play_click_end"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtoodrsop6qus"]
+[gd_scene load_steps=16 format=3 uid="uid://dtoodrsop6qus"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_xylgi"]
+[ext_resource type="Script" path="res://scripts/enemy_bat_strong.gd" id="1_xylgi"]
 [ext_resource type="Texture2D" uid="uid://duc0kb64w1k5e" path="res://Textures/Enemy/bat/bat.32x32-frames.png" id="2_yiwh1"]
 [ext_resource type="PackedScene" uid="uid://42qup1p37ood" path="res://scenes/hurt_box.tscn" id="3_q1j08"]
 [ext_resource type="PackedScene" uid="uid://b5o0hduemvf04" path="res://scenes/hit_box.tscn" id="4_3kr28"]
+[ext_resource type="AudioStream" uid="uid://c0a6x4o8l5jlj" path="res://Audio/sfx/bat_strong_death.wav" id="5_gt4q6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht4pu"]
 atlas = ExtResource("2_yiwh1")
@@ -82,8 +83,6 @@ script = ExtResource("1_xylgi")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_kk5g6")
 animation = &"fly"
-frame = 4
-frame_progress = 0.0959589
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)
@@ -106,7 +105,10 @@ collision_mask = 2
 position = Vector2(-2, 0)
 shape = SubResource("CapsuleShape2D_17s6n")
 
-[node name="snd_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="bat_strong_death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gt4q6")
+volume_db = -10.0
+bus = &"Sfx"
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 

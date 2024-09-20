@@ -35,3 +35,6 @@ func _on_hyped_checkbox_toggled(button_pressed: bool):
 	if button_pressed:
 		chill_checkbox.set_pressed_no_signal(false)
 		get_node("/root/MusicModeChanger").change_music_mode("hyped")
+
+func _on_change_aim_mode(mode : String):
+	GameData.aiming_mode = mode

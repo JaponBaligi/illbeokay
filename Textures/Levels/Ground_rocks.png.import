@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jfw81uny705n"
-path="res://.godot/imported/fire-breath.png-82e327ff3e950c2f2ea190a8d3f8dbc7.ctex"
+uid="uid://jjx3qcpsappc"
+path="res://.godot/imported/Ground_rocks.png-e041e25316ffff21e7bca647bbafe422.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Weapons/fire-breath.png"
-dest_files=["res://.godot/imported/fire-breath.png-82e327ff3e950c2f2ea190a8d3f8dbc7.ctex"]
+source_file="res://Textures/Levels/Ground_rocks.png"
+dest_files=["res://.godot/imported/Ground_rocks.png-e041e25316ffff21e7bca647bbafe422.ctex"]
 
 [params]
 

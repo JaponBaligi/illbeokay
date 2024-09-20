@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://bijmasndg50yd"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_2gu2q"]
+[ext_resource type="PackedScene" uid="uid://dckqrbgrjon88" path="res://scenes/basic_button.tscn" id="1_gonth"]
+[ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="3_e4qrc"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gu2q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0.282353)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.5
+offset_top = -110.0
+offset_right = 212.5
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Resume" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e4qrc")
+text = "Resume"
+
+[node name="Restart" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e4qrc")
+text = "Restart"
+
+[node name="Options" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e4qrc")
+text = "Options"
+
+[node name="Main Menu" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_e4qrc")
+text = "Main Menu"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

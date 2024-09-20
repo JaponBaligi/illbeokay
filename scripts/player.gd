@@ -5,9 +5,8 @@ var hp = 80
 var maxhp = 80
 var last_movement = Vector2.UP
 var time = 0
-var aiming_mode = "automatic"
-@warning_ignore("shadowed_global_identifier")
-var exp = 0
+var aiming_mode = ""
+var exp_value = 0
 var exp_level = 1
 var total_exp = 0
 
@@ -16,6 +15,7 @@ var total_exp = 0
 var fireBall = preload("res://scenes/fireball.tscn")
 var nebula = preload("res://scenes/nebula.tscn")
 var staff = preload("res://scenes/staff.tscn")
+#var firebreath = preload("res://scenes/fire_breath.tscn")
 
 # Attack Nodes
 
@@ -25,6 +25,8 @@ var staff = preload("res://scenes/staff.tscn")
 @onready var NebulaTimer = get_node("%NebulaTimer")
 @onready var NebulaAttackTimer = get_node("%NebulaAttackTimer")
 @onready var staffBase = get_node("%StaffBase")
+#@onready var FireBreathTimer = get_node("%FireBreathTimer")
+#@onready var FireBreathAttackTimer = get_node("%FireBreathAttackTimer")
 
 #UPGRADE SECTION
 
@@ -54,6 +56,13 @@ var nebula_level = 0
 var staff_ammo = 0
 var staff_level = 0
 
+#Fire Breath
+
+#var firebreath_ammo = 1
+#var firebreath_attackspeed = 5
+#var firebreath_level = 0
+#var angles = []
+
 # Enemy Related
 
 var enemy_close = []
@@ -77,7 +86,8 @@ var enemy_close = []
 @onready var sndLose = get_node("%snd_lose")
 
 # OPTIONS SECTION
-@onready var settings_tab_container = get_node("OptionsMenu/MarginContainer/VBoxContainer/Settings_Tab_Container")
+@onready var settings_tab_container = get_node("GUILayer/OptionsMenu/MarginContainer/VBoxContainer/Settings_Tab_Container")
+
 
 func _ready():
 	reload_timer.set_wait_time(1.5)
@@ -85,12 +95,11 @@ func _ready():
 	add_child(reload_timer)
 	upgrade_character("fireball1")
 	attack()
-	set_expbar(exp, calculate_expcap())
+	set_expbar(exp_value, calculate_expcap())
 	_on_hurt_box_hurt(0,0,0)
 	aiming_mode = GameData.aiming_mode
 	get_node("/root/MusicModeChanger").start_music()
 
-@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	movement()
 
@@ -131,6 +140,11 @@ func attack():
 		NebulaTimer.start()
 	if staff_level > 0:
 		spawn_staff()
+	#if firebreath_level > 0:
+	#	FireBreathTimer.wait_time = firebreath_attackspeed * (1 - spell_cdr)
+	#if FireBreathTimer.is_stopped():
+	#	FireBreathTimer.start()
+
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0,999.0) 
 	healthBar.max_value = maxhp
@@ -193,10 +207,29 @@ func spawn_staff():
 		if i.has_method("update_staff"):
 			i.update_staff()
 
-@warning_ignore("unused_parameter")
+#func _on_fire_breath_timer_timeout():
+#	firebreath_ammo += firebreath_level
+#	FireBreathAttackTimer.start()
+
+#func _on_fire_breath_attack_timer_timeout():
+#	if firebreath_ammo > 0:
+#		for angle in angles:
+#			var firebreath_instance = firebreath.instantiate()
+#			firebreath_instance.global_position = global_position
+#			firebreath_instance.level = firebreath_level
+#			firebreath_instance.rotation = deg_to_rad(angle)  # Rotate instance based on the angle
+#			add_child(firebreath_instance)
+#		firebreath_ammo -= 1
+#	else:
+#		FireBreathAttackTimer.stop()
+#	
+#	if firebreath_ammo > 0:
+#		FireBreathAttackTimer.start()
+#	else:
+#		FireBreathAttackTimer.stop()
+
 func _on_change_aim_mode(mode: String):
 	aiming_mode = GameData.aiming_mode
-	print("Aiming mode loaded:", aiming_mode)
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -267,24 +300,23 @@ func _on_collect_area_area_entered(area):
 func calculate_exp(exp_orb):
 	var exp_required = calculate_expcap()
 	total_exp += exp_orb
-	if exp + total_exp >= exp_required: #level_up
-		total_exp -= exp_required - exp
+	if exp_value + total_exp >= exp_required: #level_up
+		total_exp -= exp_required - exp_value
 		exp_level += 1
-		exp = 0 
+		exp_value = 0 
 		exp_required = calculate_expcap()
 		levelup()
 	else:
-		exp += total_exp
+		exp_value += total_exp
 		total_exp = 0
 	
-	set_expbar(exp, exp_required)
-
+	set_expbar(exp_value, exp_required)
 func calculate_expcap():
 	var exp_cap = exp_level
 	if exp_level < 20:
 		exp_cap = exp_level*5
 	elif exp_level <40 :
-		exp_cap * 95 * (exp_level-19)*8
+		exp_cap + 95 * (exp_level-19)*8
 	else:
 		exp_cap = 255 + (exp_level - 39)*12
 	return exp_cap
@@ -343,6 +375,22 @@ func upgrade_character(upgrade):
 			staff_level = 3
 		"staff4":
 			staff_level = 4
+#		"firebreath1":
+#			angles = [-270]
+#			firebreath_level = 1
+#			firebreath_ammo = 1
+#		"firebreath2":
+#			angles = [-270, 0]
+#			firebreath_level = 2
+#			firebreath_ammo += 1
+#		"firebreath3":
+#			angles = [-270, 0, 90]
+#			firebreath_level = 3
+#			firebreath_ammo +=1
+#		"firebreath4":
+#			angles = [-270, 0, 90, 180]
+#			firebreath_level = 4
+#			firebreath_ammo += 1
 		"armor1","armor2","armor3","armor4":
 			armor += 1
 		"speed1","speed2","speed3","speed4":
@@ -404,6 +452,7 @@ func time_counter(argtime = 0):
 		get_s = str(0,get_s)
 	label_Timer.text = str(get_m,":",get_s)
 
+
 func death():
 	sprite.play("death")
 	deathPanel.visible = true
@@ -418,7 +467,7 @@ func death():
 		lblResult.text = "Next Time Buddy!"
 		sndLose.play()
 
-func _on_btn_menu_pressed():
+func _on_btn_menu_click_end():
 	get_tree().paused = false
-	get_node("/root/MusicModeChanger").stop_music()
+	MusicModeChanger.stop_music()
 	var _level = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

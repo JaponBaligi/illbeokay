@@ -3390,12 +3390,12 @@ layer_4/tile_data = PackedInt32Array(-8519809, 1310720, 1342177307, -8519810, 13
 position = Vector2(0, 12)
 motion_mode = 1
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_u8sf5")]
+
 [node name="EnemySpawner" parent="." instance=ExtResource("3_2ongh")]
 spawns = Array[ExtResource("5_om3y4")]([SubResource("Resource_834h8")])
 
 [node name="Loot" type="Node" parent="." groups=["loot"]]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_u8sf5")]
-visible = false

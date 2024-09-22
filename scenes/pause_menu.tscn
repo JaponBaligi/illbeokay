@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bijmasndg50yd"]
+[gd_scene load_steps=9 format=3 uid="uid://bijmasndg50yd"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_2gu2q"]
 [ext_resource type="PackedScene" uid="uid://dckqrbgrjon88" path="res://scenes/basic_button.tscn" id="1_gonth"]
 [ext_resource type="FontFile" uid="uid://b8tx3peopvgch" path="res://Textures/GUI/Text-Fonts/yoster.ttf" id="3_e4qrc"]
+[ext_resource type="Texture2D" uid="uid://btlyurfxaxtrh" path="res://Textures/GUI/UI-Elements/pausemenu/pausemenubg.png" id="3_vubpg"]
+[ext_resource type="PackedScene" uid="uid://b4mjy62osxtg6" path="res://scenes/settings_tab_container.tscn" id="4_uegcu"]
+[ext_resource type="Theme" uid="uid://dicn8k4s1xwii" path="res://Textures/Themes/options_exitmenu_button.tres" id="5_u60pf"]
+[ext_resource type="Theme" uid="uid://o1e7aarsxr6x" path="res://Textures/Themes/BasicButton.tres" id="5_vd107"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eu7ej"]
+texture = ExtResource("3_vubpg")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +28,16 @@ offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 0.282353)
 
+[node name="lbl_pause" type="Label" parent="."]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 42.0
+offset_right = 399.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -27,12 +45,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -212.5
-offset_top = -110.0
-offset_right = 212.5
-offset_bottom = 110.0
+offset_left = -213.0
+offset_top = -75.0
+offset_right = 212.0
+offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_eu7ej")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -42,25 +61,73 @@ theme_override_constants/separation = 20
 
 [node name="Resume" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
 layout_mode = 2
+theme = ExtResource("5_u60pf")
 theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 18
 text = "Resume"
 
 [node name="Restart" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
 layout_mode = 2
+theme = ExtResource("5_u60pf")
 theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 16
 text = "Restart"
 
 [node name="Options" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
 layout_mode = 2
+theme = ExtResource("5_u60pf")
 theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 16
 text = "Options"
 
 [node name="Main Menu" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_gonth")]
 layout_mode = 2
+theme = ExtResource("5_u60pf")
 theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 14
 text = "Main Menu"
+icon_alignment = 1
+
+[node name="Settings_Tab_Container" parent="." instance=ExtResource("4_uegcu")]
+visible = false
+layout_mode = 1
+
+[node name="lbl_note" type="Label" parent="Settings_Tab_Container/TabContainer/Sound" index="6"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 190.0
+offset_right = 482.0
+offset_bottom = 213.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 7
+text = "(you need to restart if you want to apply for music type changes)"
+
+[node name="Label" type="Label" parent="Settings_Tab_Container/TabContainer/Controls" index="1"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 164.0
+offset_right = 488.0
+offset_bottom = 187.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_e4qrc")
+theme_override_font_sizes/font_size = 9
+text = "(you need to restart if you want to apply for aiming mode changes)"
+
+[node name="Back" parent="Settings_Tab_Container" instance=ExtResource("1_gonth")]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 268.0
+offset_right = 364.0
+offset_bottom = 298.0
+theme = ExtResource("5_vd107")
+theme_override_fonts/font = ExtResource("3_e4qrc")
+text = "Back"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Settings_Tab_Container/Back" to="." method="_on_back_pressed"]
+
+[editable path="Settings_Tab_Container"]

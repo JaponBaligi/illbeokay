@@ -386,7 +386,7 @@ wait_time = 0.075
 
 [node name="NebulaTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 1.5
+wait_time = 3.0
 autostart = true
 
 [node name="NebulaAttackTimer" type="Timer" parent="Attack/NebulaTimer"]
@@ -399,12 +399,13 @@ unique_name_in_owner = true
 
 [node name="FireBreathTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
-wait_time = 3.0
+wait_time = 4.5
 autostart = true
 
 [node name="FireBreathAttackTimer" type="Timer" parent="Attack/FireBreathTimer"]
 unique_name_in_owner = true
-wait_time = 3.0
+wait_time = 2.5
+autostart = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 light_mask = 4

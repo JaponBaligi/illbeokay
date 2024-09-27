@@ -92,7 +92,17 @@ icon_alignment = 1
 visible = false
 layout_mode = 1
 
+[node name="checkbox_chill" parent="Settings_Tab_Container/TabContainer/Sound" index="1"]
+visible = false
+
+[node name="checkbox_hyped" parent="Settings_Tab_Container/TabContainer/Sound" index="2"]
+visible = false
+
+[node name="Label" parent="Settings_Tab_Container/TabContainer/Sound" index="3"]
+visible = false
+
 [node name="lbl_note" type="Label" parent="Settings_Tab_Container/TabContainer/Sound" index="6"]
+visible = false
 layout_mode = 0
 offset_left = 229.0
 offset_top = 190.0
@@ -103,7 +113,11 @@ theme_override_fonts/font = ExtResource("3_e4qrc")
 theme_override_font_sizes/font_size = 7
 text = "(you need to restart if you want to apply for music type changes)"
 
+[node name="lbl_aimmode" parent="Settings_Tab_Container/TabContainer/Controls/MarginContainer/VBoxContainer" index="0"]
+visible = false
+
 [node name="Label" type="Label" parent="Settings_Tab_Container/TabContainer/Controls" index="1"]
+visible = false
 layout_mode = 0
 offset_left = 164.0
 offset_top = 164.0

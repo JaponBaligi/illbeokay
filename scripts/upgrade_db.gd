@@ -243,46 +243,46 @@ const UPGRADES = {
 		"prerequisite": ["ring1","fireball4","nebula4","staff4"],
 		"type": "upgrade"
 	},
-#		"firebreath1": {
-#		"icon": WEAPON_PATH + "firebreath.png",
-#		"displayname": "Fire Breath",
-#		"details": "A fire comes out of your body from one direction.",
-#		"level": "Level: 1",
-#		"prerequisite": [],
-#		"type": "weapon"
-#	},
-#	
-#		"firebreath2": {
-#		"icon": WEAPON_PATH + "firebreath.png",
-#		"displayname": "Fire Breath",
-#		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
-#		"level": "Level: 2",
-#		"prerequisite": ["firebreath1"],
-#		"type": "weapon"
-#	},
-#		"firebreath3": {
-#		"icon": WEAPON_PATH + "firebreath.png",
-#		"displayname": "Fire Breath",
-#		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
-#		"level": "Level: 3",
-#		"prerequisite": ["firebreath2"],
-#		"type": "weapon"
-#	},
-#		"firebreath4": {
-#		"icon": WEAPON_PATH + "firebreath.png",
-#		"displayname": "Fire Breath",
-#		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
-#		"level": "Level: 4",
-#		"prerequisite": ["firebreath3"],
-#		"type": "weapon"
-#1	},
-	
-	"food": {
-		"icon": ICON_PATH + "burger.png",
-		"displayname": "Food",
-		"details": "An ancient developer food gives you 30 health",
-		"level": "N/A",
+		"firebreath1": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "A fire comes out of your body from one direction.",
+		"level": "Level: 1",
 		"prerequisite": [],
-		"type": "item"
-	}
+		"type": "weapon"
+	},
+	
+		"firebreath2": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"level": "Level: 2",
+		"prerequisite": ["firebreath1"],
+		"type": "weapon"
+	},
+		"firebreath3": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"level": "Level: 3",
+		"prerequisite": ["firebreath2"],
+		"type": "weapon"
+	},
+		"firebreath4": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"level": "Level: 4",
+		"prerequisite": ["firebreath3"],
+		"type": "weapon"
+	},
+	
+	"rebirth": {
+		"icon": ICON_PATH + "rebirth.png",
+		"displayname": "Reincarnate",
+		"details": "Give yourself one more chance, one time only.",
+		"level": "",
+		"prerequisite": [],
+		"type": "upgrade"
+	},
 }

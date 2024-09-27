@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5u5clbryprtr"]
+[gd_scene load_steps=12 format=3 uid="uid://b5u5clbryprtr"]
 
 [ext_resource type="Texture2D" uid="uid://jjx3qcpsappc" path="res://Textures/Levels/Ground_rocks.png" id="1_araj3"]
 [ext_resource type="PackedScene" uid="uid://dvh4bkk5eayqc" path="res://scenes/player.tscn" id="2_l7cjv"]
 [ext_resource type="PackedScene" uid="uid://d0oqxnu38of5v" path="res://scenes/enemy_spawner.tscn" id="3_2ongh"]
 [ext_resource type="PackedScene" uid="uid://82maahqg5rrs" path="res://scenes/enemy_slime.tscn" id="4_b52bw"]
 [ext_resource type="Script" path="res://scripts/spawn_info.gd" id="5_om3y4"]
+[ext_resource type="PackedScene" uid="uid://sq40undo10gk" path="res://scenes/exp_orb.tscn" id="7_pnr2x"]
 [ext_resource type="PackedScene" uid="uid://bijmasndg50yd" path="res://scenes/pause_menu.tscn" id="7_u8sf5"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_68qq8"]
@@ -3399,3 +3400,7 @@ layer = 2
 spawns = Array[ExtResource("5_om3y4")]([SubResource("Resource_834h8")])
 
 [node name="Loot" type="Node" parent="." groups=["loot"]]
+
+[node name="ExpOrb" parent="." instance=ExtResource("7_pnr2x")]
+position = Vector2(-24, -69)
+exp = 1126

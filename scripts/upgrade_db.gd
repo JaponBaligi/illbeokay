@@ -243,12 +243,69 @@ const UPGRADES = {
 		"prerequisite": ["ring1","fireball4","nebula4","staff4"],
 		"type": "upgrade"
 	},
-	"food": {
-		"icon": ICON_PATH + "burger.png",
-		"displayname": "Food",
+		"firebreath1": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "A fire comes out of your body from one direction.",
+		"level": "Level: 1",
+		"prerequisite": [],
+		"type": "weapon"
+	},
+	
+		"firebreath2": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"level": "Level: 2",
+		"prerequisite": ["firebreath1"],
+		"type": "weapon"
+	},
+		"firebreath3": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"level": "Level: 3",
+		"prerequisite": ["firebreath2"],
+		"type": "weapon"
+	},
+		"firebreath4": {
+		"icon": WEAPON_PATH + "firebreath.png",
+		"displayname": "Fire Breath",
+		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"level": "Level: 4",
+		"prerequisite": ["firebreath3"],
+		"type": "weapon"
+	},
+		"collector1": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "Increases the pickup range by %25",
+		"level": "Level: 1",
+		"prerequisite": [],
+		"type": "upgrade"
+	},
+		"collector2": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "Increases the pickup range by %35",
+		"level": "Level: 2",
+		"prerequisite": ["collector1"],
+		"type": "upgrade"
+	},
+		"collector3": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "Increases the pickup range by %50",
+		"level": "Level: 3",
+		"prerequisite": ["collector2"],
+		"type": "upgrade"
+	},
+		"food": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
 		"details": "An ancient developer food gives you 30 health",
-		"level": "N/A",
+		"level": "",
 		"prerequisite": [],
 		"type": "item"
-	}
+	},
 }

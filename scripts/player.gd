@@ -5,9 +5,8 @@ var hp = 80
 var maxhp = 80
 var last_movement = Vector2.UP
 var time = 0
-var aiming_mode = "automatic"
-@warning_ignore("shadowed_global_identifier")
-var exp = 0
+var aiming_mode = ""
+var exp_value = 0
 var exp_level = 1
 var total_exp = 0
 
@@ -25,7 +24,9 @@ var staff = preload("res://scenes/staff.tscn")
 @onready var NebulaTimer = get_node("%NebulaTimer")
 @onready var NebulaAttackTimer = get_node("%NebulaAttackTimer")
 @onready var staffBase = get_node("%StaffBase")
-
+@onready var FireBreath = preload("res://scenes/fire_breath.tscn")
+@onready var FireBreathTimer = get_node("%FireBreathTimer")
+@onready var FireBreathAttackTimer = get_node("%FireBreathAttackTimer")
 #UPGRADE SECTION
 
 var collected_upgrades = []
@@ -54,6 +55,17 @@ var nebula_level = 0
 var staff_ammo = 0
 var staff_level = 0
 
+#Fire Breath
+
+var firebreath_level = 0
+var firebreath_directions = []
+var firebreath_ammo = 0
+var firebreath_baseammo = 0
+var firebreath_attackspeed = 4.5
+
+#Collector Hand
+@onready var grabAreaCollision = $GrabArea/CollisionShape2D
+
 # Enemy Related
 
 var enemy_close = []
@@ -70,14 +82,14 @@ var enemy_close = []
 @onready var sndLevelUp = get_node("%snd_levelup")
 @onready var healthBar = get_node("%HealthBar")
 @onready var label_Timer = get_node("%label_Timer")
-
 @onready var deathPanel = get_node("%DeathPanel")
 @onready var lblResult = get_node("%label_Result")
 @onready var sndVictory = get_node("%snd_victory")
 @onready var sndLose = get_node("%snd_lose")
 
 # OPTIONS SECTION
-@onready var settings_tab_container = get_node("OptionsMenu/MarginContainer/VBoxContainer/Settings_Tab_Container")
+@onready var settings_tab_container = get_node("GUILayer/OptionsMenu/MarginContainer/VBoxContainer/Settings_Tab_Container")
+
 
 func _ready():
 	reload_timer.set_wait_time(1.5)
@@ -85,12 +97,12 @@ func _ready():
 	add_child(reload_timer)
 	upgrade_character("fireball1")
 	attack()
-	set_expbar(exp, calculate_expcap())
+	set_expbar(exp_value, calculate_expcap())
 	_on_hurt_box_hurt(0,0,0)
 	aiming_mode = GameData.aiming_mode
 	get_node("/root/MusicModeChanger").start_music()
+	$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animation_finished"))
 
-@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	movement()
 
@@ -131,6 +143,11 @@ func attack():
 		NebulaTimer.start()
 	if staff_level > 0:
 		spawn_staff()
+	if firebreath_level > 0:
+		FireBreathTimer.wait_time = firebreath_attackspeed * (1-spell_cdr)
+	if FireBreathAttackTimer.is_stopped():
+		FireBreathTimer.start()
+
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0,999.0) 
 	healthBar.max_value = maxhp
@@ -193,10 +210,35 @@ func spawn_staff():
 		if i.has_method("update_staff"):
 			i.update_staff()
 
-@warning_ignore("unused_parameter")
+func _on_fire_breath_timer_timeout():
+	firebreath_ammo += firebreath_baseammo
+	FireBreathAttackTimer.start()
+
+func _on_fire_breath_attack_timer_timeout():
+	if firebreath_ammo and firebreath_level > 0:
+		for angle in firebreath_directions:
+			var firebreath_instance = FireBreath.instantiate()
+			firebreath_instance.angle_degrees = angle 
+			var rad = deg_to_rad(angle)
+			var offset = Vector2(cos(rad), sin(rad)) * 10
+			firebreath_instance.position = global_position + offset
+			firebreath_instance.rotation_degrees = angle
+			add_child(firebreath_instance)
+			var timer = Timer.new()
+			timer.wait_time = 3.0
+			timer.one_shot = true  # Timer'ın sadece bir kez çalışmasını sağla
+			firebreath_instance.add_child(timer)  # Timer'ı FireBreath instance'ına ekle
+			timer.connect("timeout", Callable(firebreath_instance, "queue_free"))  # Süre dolduğunda kaldır
+			timer.start()
+			firebreath_ammo -= 1
+			
+	if firebreath_ammo > 0:
+		FireBreathAttackTimer.start()
+	else:
+		FireBreathAttackTimer.stop()
+
 func _on_change_aim_mode(mode: String):
 	aiming_mode = GameData.aiming_mode
-	print("Aiming mode loaded:", aiming_mode)
 
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -222,16 +264,13 @@ func shoot_manual():
 	if fireball_level > 0 and fireball_ammo > 0:
 		var fireball_attack = fireBall.instantiate()
 		fireball_attack.global_position = global_position 
-		# Fare pozisyonuna göre yön vektörünü hesapla
 		var mouse_position = get_global_mouse_position()
-		var direction = (mouse_position - global_position).normalized()  # Karakterden fareye doğru yön
-		# Fireball'un yönü ve hızı
+		var direction = (mouse_position - global_position).normalized()
 		fireball_attack.angle = direction
-		fireball_attack.speed = fireball_attack.speed  # Merminin hızını belirle     
+		fireball_attack.speed = fireball_attack.speed      
 		fireball_attack.level = fireball_level
 		add_child(fireball_attack)
 		fireball_ammo -= 1
-		# Mermi bittiğinde yeniden dolum zamanlayıcısını başlat
 		if fireball_ammo <= 0:
 			FireBallTimer.stop()
 			reload_timer.start()
@@ -245,7 +284,7 @@ func get_target():
 func _on_reload_timer_timeout():
 	# Mermiyi yenile
 	fireball_ammo = fireball_baseammo + additional_attacks
-	FireBallTimer.start()  # Ateşlemeyi tekrar başlat
+	FireBallTimer.start() 
 
 func _on_enemy_detection_area_body_entered(body):
 	if body.is_in_group("enemy") and body != self and not enemy_close.has(body):
@@ -267,24 +306,23 @@ func _on_collect_area_area_entered(area):
 func calculate_exp(exp_orb):
 	var exp_required = calculate_expcap()
 	total_exp += exp_orb
-	if exp + total_exp >= exp_required: #level_up
-		total_exp -= exp_required - exp
+	if exp_value + total_exp >= exp_required: #level_up
+		total_exp -= exp_required - exp_value
 		exp_level += 1
-		exp = 0 
+		exp_value = 0 
 		exp_required = calculate_expcap()
 		levelup()
 	else:
-		exp += total_exp
+		exp_value += total_exp
 		total_exp = 0
-	
-	set_expbar(exp, exp_required)
+	set_expbar(exp_value, exp_required)
 
 func calculate_expcap():
 	var exp_cap = exp_level
 	if exp_level < 20:
 		exp_cap = exp_level*5
 	elif exp_level <40 :
-		exp_cap * 95 * (exp_level-19)*8
+		exp_cap + 95 * (exp_level-19)*8
 	else:
 		exp_cap = 255 + (exp_level - 39)*12
 	return exp_cap
@@ -356,7 +394,31 @@ func upgrade_character(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
-	
+		"firebreath1":
+			firebreath_baseammo += 1
+			firebreath_level = 1
+			firebreath_directions = [90]
+		"firebreath2":
+			firebreath_baseammo += 1
+			firebreath_level = 2
+			firebreath_attackspeed -= 0.2
+			firebreath_directions.append(270)
+		"firebreath3":
+			firebreath_baseammo += 1
+			firebreath_level = 3
+			firebreath_attackspeed -= 0.2
+			firebreath_directions.append(0)
+		"firebreath4":
+			firebreath_baseammo += 1
+			firebreath_level = 4
+			firebreath_attackspeed -= 0.2
+			firebreath_directions.append(180)
+		"collector1":
+			grabAreaCollision.shape.radius *= 1.25
+		"collector2":
+			grabAreaCollision.shape.radius *= 1.35
+		"collector3":
+			grabAreaCollision.shape.radius *= 1.50
 	attack()
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:
@@ -393,7 +455,7 @@ func get_random_item():
 		return randomitem
 	else:
 		return null
-		
+
 func time_counter(argtime = 0):
 	time = argtime
 	var get_m = int(time/60.0)
@@ -411,14 +473,23 @@ func death():
 	var tween = deathPanel.create_tween()
 	tween.tween_property(deathPanel,"position",Vector2(180,50),3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
+	var timer = Timer.new()
+	timer.set_wait_time(3.0)  # Delay of 3 seconds, adjust as needed
+	timer.one_shot = true
+	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	add_child(timer)
+	timer.start()
 	if time >= 300:
 		lblResult.text = "You WON!!!"
 		sndVictory.play()
 	else:
 		lblResult.text = "Next Time Buddy!"
 		sndLose.play()
+		
+func _on_timer_timeout():
+	queue_free()
 
-func _on_btn_menu_pressed():
+func _on_btn_menu_click_end():
 	get_tree().paused = false
-	get_node("/root/MusicModeChanger").stop_music()
+	MusicModeChanger.stop_music()
 	var _level = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

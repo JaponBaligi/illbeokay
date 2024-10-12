@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbltgjnroexof"
-path="res://.godot/imported/13_vortex_spritesheet.png-4497158a5bc5b7bb29d69f359de76f14.ctex"
+uid="uid://wss7a435w1wu"
+path="res://.godot/imported/reincarnate.png-878be3c34c99266b832482d15a7d0c90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Skills/13_vortex_spritesheet.png"
-dest_files=["res://.godot/imported/13_vortex_spritesheet.png-4497158a5bc5b7bb29d69f359de76f14.ctex"]
+source_file="res://Textures/Items/Skills/reincarnate.png"
+dest_files=["res://.godot/imported/reincarnate.png-878be3c34c99266b832482d15a7d0c90.ctex"]
 
 [params]
 

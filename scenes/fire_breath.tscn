@@ -40,8 +40,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3iytf"]
-radius = 15.0
-height = 38.0
+radius = 16.0
+height = 32.0
 
 [node name="FireBreath" type="Area2D" groups=["attack"]]
 top_level = true
@@ -57,9 +57,10 @@ rotation = 1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rftf3")
 animation = &"phew"
+frame_progress = 0.354605
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
+position = Vector2(-1, -0.999999)
 shape = SubResource("CapsuleShape2D_3iytf")
 
 [node name="snd_firebreath" type="AudioStreamPlayer" parent="."]

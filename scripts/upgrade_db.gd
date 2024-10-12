@@ -276,13 +276,36 @@ const UPGRADES = {
 		"prerequisite": ["firebreath3"],
 		"type": "weapon"
 	},
-	
-	"rebirth": {
-		"icon": ICON_PATH + "rebirth.png",
-		"displayname": "Reincarnate",
-		"details": "Give yourself one more chance, one time only.",
-		"level": "",
+		"collector1": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "Increases the pickup range by %25",
+		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
+	},
+		"collector2": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "Increases the pickup range by %35",
+		"level": "Level: 2",
+		"prerequisite": ["collector1"],
+		"type": "upgrade"
+	},
+		"collector3": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "Increases the pickup range by %50",
+		"level": "Level: 3",
+		"prerequisite": ["collector2"],
+		"type": "upgrade"
+	},
+		"food": {
+		"icon": ICON_PATH + "lootarea.png",
+		"displayname": "Collector's Hand",
+		"details": "An ancient developer food gives you 30 health",
+		"level": "",
+		"prerequisite": [],
+		"type": "item"
 	},
 }

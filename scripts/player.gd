@@ -63,6 +63,9 @@ var firebreath_ammo = 0
 var firebreath_baseammo = 0
 var firebreath_attackspeed = 4.5
 
+#Collector Hand
+@onready var grabAreaCollision = $GrabArea/CollisionShape2D
+
 # Enemy Related
 
 var enemy_close = []
@@ -410,6 +413,12 @@ func upgrade_character(upgrade):
 			firebreath_level = 4
 			firebreath_attackspeed -= 0.2
 			firebreath_directions.append(180)
+		"collector1":
+			grabAreaCollision.shape.radius *= 1.25
+		"collector2":
+			grabAreaCollision.shape.radius *= 1.35
+		"collector3":
+			grabAreaCollision.shape.radius *= 1.50
 	attack()
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:
@@ -479,13 +488,6 @@ func death():
 		
 func _on_timer_timeout():
 	queue_free()
-
-func _on_animation_finished(anim_name: String):
-	if anim_name == "death":
-		# Option 1: Hide the player character (if you want to respawn later)
-		sprite.hide()
-		# Option 2: Completely remove the player from the scene
-		#queue_free() 
 
 func _on_btn_menu_click_end():
 	get_tree().paused = false

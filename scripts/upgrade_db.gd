@@ -277,7 +277,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 		"collector1": {
-		"icon": ICON_PATH + "lootarea.png",
+		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %25",
 		"level": "Level: 1",
@@ -285,7 +285,7 @@ const UPGRADES = {
 		"type": "upgrade"
 	},
 		"collector2": {
-		"icon": ICON_PATH + "lootarea.png",
+		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %35",
 		"level": "Level: 2",
@@ -293,16 +293,48 @@ const UPGRADES = {
 		"type": "upgrade"
 	},
 		"collector3": {
-		"icon": ICON_PATH + "lootarea.png",
+		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %50",
 		"level": "Level: 3",
 		"prerequisite": ["collector2"],
 		"type": "upgrade"
 	},
+		"skull1": {
+		"icon": WEAPON_PATH + "skull.png",
+		"displayname": "Skull Chamber",
+		"details": "A skull rotating around your orbit,that's cool.",
+		"level": "Level: 1",
+		"prerequisite": [],
+		"type": "weapon"
+	},
+		"skull2": {
+		"icon": WEAPON_PATH + "skull.png",
+		"displayname": "Skull Chamber",
+		"details": "Another skull added your orbit, size and damage increased 25%.",
+		"level": "Level: 2",
+		"prerequisite": ["skull1"],
+		"type": "weapon"
+	},
+		"skull3": {
+		"icon": WEAPON_PATH + "skull.png",
+		"displayname": "Skull Chamber",
+		"details": "Another skull added your orbit, size and damage increased 25%.",
+		"level": "Level: 3",
+		"prerequisite": ["skull2"],
+		"type": "weapon"
+	},
+		"skull4": {
+		"icon": WEAPON_PATH + "skull.png",
+		"displayname": "Skull Chamber",
+		"details": "Another skull added your orbit, size and damage increased 25%.",
+		"level": "Level: 4",
+		"prerequisite": ["skull3"],
+		"type": "weapon"
+	},
 		"food": {
-		"icon": ICON_PATH + "lootarea.png",
-		"displayname": "Collector's Hand",
+		"icon": ICON_PATH + "burger.png",
+		"displayname": "Burger",
 		"details": "An ancient developer food gives you 30 health",
 		"level": "",
 		"prerequisite": [],

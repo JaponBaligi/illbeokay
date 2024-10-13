@@ -64,7 +64,13 @@ var firebreath_baseammo = 0
 var firebreath_attackspeed = 4.5
 
 #Collector Hand
+
 @onready var grabAreaCollision = $GrabArea/CollisionShape2D
+
+# Skull Chamber
+
+var skull_level = 0
+var skull_scene = preload("res://scenes/skullchamber.tscn")
 
 # Enemy Related
 
@@ -209,6 +215,19 @@ func spawn_staff():
 	for i in get_staff:
 		if i.has_method("update_staff"):
 			i.update_staff()
+
+func skull_level_up():
+	skull_level += 1
+	spawn_skull()
+
+func spawn_skull():
+	for i in range(skull_level):  # Her seviyeye göre kurukafa ekle
+		var new_skull = preload("res://scenes/skullchamber.tscn").instantiate()
+		new_skull.position = position 
+		new_skull.skull_index = i  # Her kurukafaya benzersiz bir indeks atayın
+		get_parent().add_child(new_skull) 
+		new_skull.level = skull_level 
+		new_skull.update_skull() 
 
 func _on_fire_breath_timer_timeout():
 	firebreath_ammo += firebreath_baseammo
@@ -419,6 +438,18 @@ func upgrade_character(upgrade):
 			grabAreaCollision.shape.radius *= 1.35
 		"collector3":
 			grabAreaCollision.shape.radius *= 1.50
+		"skull1":
+			skull_level = 1
+			spawn_skull()
+		"skull2":
+			skull_level = 2
+			spawn_skull()
+		"skull3":
+			skull_level = 3
+			spawn_skull()
+		"skull4":
+			skull_level = 4
+			spawn_skull()
 	attack()
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:

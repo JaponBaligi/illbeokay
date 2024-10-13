@@ -3403,4 +3403,4 @@ spawns = Array[ExtResource("5_om3y4")]([SubResource("Resource_834h8")])
 
 [node name="ExpOrb" parent="." instance=ExtResource("7_pnr2x")]
 position = Vector2(-24, -69)
-exp = 1126
+exp = 776

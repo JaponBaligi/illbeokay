@@ -67,6 +67,10 @@ var firebreath_attackspeed = 4.5
 
 @onready var grabAreaCollision = $GrabArea/CollisionShape2D
 
+#Third Eye
+
+@onready var fov = $FOV
+
 # Skull Chamber
 
 var skull_level = 0
@@ -402,8 +406,19 @@ func upgrade_character(upgrade):
 			staff_level = 4
 		"armor1","armor2","armor3","armor4":
 			armor += 1
-		"speed1","speed2","speed3","speed4":
-			movement_speed += 20.0
+		#current movement speed = 40
+		"speed1":
+			movement_speed += 8.0
+			#current movement speed = 48
+		"speed2":
+			movement_speed += 14.0
+			#current movement speed = 62
+		"speed3":
+			movement_speed += 24.0
+			#current movement speed = 86
+		"speed4":
+			movement_speed += 43
+			#current movement speed = 129 
 		"expand1","expand2","expand3","expand4":
 			spell_size += 0.10
 		"scroll1","scroll2","scroll3","scroll4":
@@ -450,6 +465,10 @@ func upgrade_character(upgrade):
 		"skull4":
 			skull_level = 4
 			spawn_skull()
+		"thirdeye1","thirdeye2","thirdeye3","thirdeye4":
+			fov.texture_scale += 0.1
+			spell_cdr += 0.05
+		
 	attack()
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:

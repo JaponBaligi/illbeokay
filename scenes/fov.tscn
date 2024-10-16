@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx2rqswhx080n"]
+
+[sub_resource type="Gradient" id="Gradient_jbdyg"]
+offsets = PackedFloat32Array(0, 0.512658)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_be2jm"]
+gradient = SubResource("Gradient_jbdyg")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="FOV" type="PointLight2D"]
+show_behind_parent = true
+light_mask = 0
+visibility_layer = 15
+position = Vector2(0.499997, 6.94394e-06)
+scale = Vector2(0.9, 0.822857)
+color = Color(0.505882, 0.505882, 0.505882, 1)
+energy = 3.23
+texture = SubResource("GradientTexture2D_be2jm")

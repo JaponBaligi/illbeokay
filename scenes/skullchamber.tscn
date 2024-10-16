@@ -10,6 +10,7 @@ radius = 8.0
 script = ExtResource("1_3iqy8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 scale = Vector2(0.833333, 1)
 texture = ExtResource("2_6t3n8")
 

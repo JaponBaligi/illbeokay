@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://dvh4bkk5eayqc"]
+[gd_scene load_steps=70 format=3 uid="uid://dvh4bkk5eayqc"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s3qyg"]
 [ext_resource type="Texture2D" uid="uid://bqf8260xvmxaj" path="res://Textures/Player/Player_asset/Sorcerer/sorcerer_death.png" id="1_td4w0"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://ci0yh8puljjyw" path="res://Audio/game-over.WAV" id="18_swnpd"]
 [ext_resource type="Theme" uid="uid://o1e7aarsxr6x" path="res://Textures/Themes/BasicButton.tres" id="19_fllf1"]
 [ext_resource type="PackedScene" uid="uid://okd1vduvsily" path="res://scenes/options_menu.tscn" id="21_c3yk7"]
+[ext_resource type="PackedScene" uid="uid://cx2rqswhx080n" path="res://scenes/fov.tscn" id="24_jdd2v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgun4"]
 atlas = ExtResource("2_hkvjp")
@@ -578,6 +579,23 @@ offset_left = 0.112946
 offset_top = 0.034647
 offset_right = 0.112976
 offset_bottom = 0.0346375
+
+[node name="Vision" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="Vision"]
+light_mask = 14
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.454902)
+
+[node name="FOV" parent="." instance=ExtResource("24_jdd2v")]
+unique_name_in_owner = true
+color = Color(0.485703, 0.485704, 0.485703, 1)
+energy = 3.1
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/FireBallTimer" to="." method="_on_fire_ball_timer_timeout"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cypuajhgcggde"
-path="res://.godot/imported/lootarea.png-8a738998197653cfcde4f1b98695c5d1.ctex"
+path="res://.godot/imported/thirdeye.png-f1fc2e6aac06746c0c5069f38b90cff2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Items/Upgrades/lootarea.png"
-dest_files=["res://.godot/imported/lootarea.png-8a738998197653cfcde4f1b98695c5d1.ctex"]
+source_file="res://Textures/Items/Upgrades/thirdeye.png"
+dest_files=["res://.godot/imported/thirdeye.png-f1fc2e6aac06746c0c5069f38b90cff2.ctex"]
 
 [params]
 

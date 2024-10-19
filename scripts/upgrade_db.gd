@@ -134,7 +134,7 @@ const UPGRADES = {
 	"speed1": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Running matters,Movement speed +%50",
+		"details": "Running matters,Movement speed +%20",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
@@ -142,7 +142,7 @@ const UPGRADES = {
 	"speed2": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Are you going to race with cheetahs?Movement speed +%50",
+		"details": "Are you going to race with cheetahs?Movement speed +%30",
 		"level": "Level: 2",
 		"prerequisite": ["speed1"],
 		"type": "upgrade"
@@ -150,7 +150,7 @@ const UPGRADES = {
 	"speed3": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Nearly speed of light there,movement speed +%50",
+		"details": "Nearly speed of light there,movement speed +%40",
 		"level": "Level: 3",
 		"prerequisite": ["speed2"],
 		"type": "upgrade"
@@ -331,6 +331,38 @@ const UPGRADES = {
 		"level": "Level: 4",
 		"prerequisite": ["skull3"],
 		"type": "weapon"
+	},
+		"thirdeye1": {
+		"icon": ICON_PATH + "thirdeye.png",
+		"displayname": "Third Eye",
+		"details": "Expands your vision little bit and reduces cooldown by %5.",
+		"level": "Level: 1",
+		"prerequisite": [],
+		"type": "upgrade"
+	},
+		"thirdeye2": {
+		"icon": ICON_PATH + "thirdeye.png",
+		"displayname": "Third Eye",
+		"details": "Expands your vision little bit and reduces cooldown by %5.",
+		"level": "Level: 2",
+		"prerequisite": ["thirdeye1"],
+		"type": "upgrade"
+	},
+		"thirdeye3": {
+		"icon": ICON_PATH + "thirdeye.png",
+		"displayname": "Third Eye",
+		"details": "Expands your vision little bit and reduces cooldown by %10.",
+		"level": "Level: 3",
+		"prerequisite": ["thirdeye2"],
+		"type": "upgrade"
+	},
+		"thirdeye4": {
+		"icon": ICON_PATH + "thirdeye.png",
+		"displayname": "Third Eye",
+		"details": "Expands your vision little bit and reduces cooldown by %10.",
+		"level": "Level: 4",
+		"prerequisite": ["thirdeye3"],
+		"type": "upgrade"
 	},
 		"food": {
 		"icon": ICON_PATH + "burger.png",

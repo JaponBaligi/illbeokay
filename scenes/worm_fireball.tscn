@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxajjfh8egnb4"]
+
+[ext_resource type="Script" path="res://scripts/worm_fireball.gd" id="1_b8nad"]
+[ext_resource type="Texture2D" uid="uid://dp542vv3mlycl" path="res://Textures/Enemy/fire_worm/Fire Ball/Move.png" id="2_kho54"]
+[ext_resource type="AudioStream" uid="uid://bxlx6eqxv2fj0" path="res://Audio/sfx/fire_worm_attack.wav" id="3_7e86l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmsis"]
+atlas = ExtResource("2_kho54")
+region = Rect2(0, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa2eb"]
+atlas = ExtResource("2_kho54")
+region = Rect2(46, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0rcm"]
+atlas = ExtResource("2_kho54")
+region = Rect2(92, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mbp7"]
+atlas = ExtResource("2_kho54")
+region = Rect2(138, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah1le"]
+atlas = ExtResource("2_kho54")
+region = Rect2(184, 0, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2is1x"]
+atlas = ExtResource("2_kho54")
+region = Rect2(230, 0, 46, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ikbec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmsis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa2eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0rcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mbp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah1le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2is1x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_prrqs"]
+radius = 3.0
+
+[node name="WormFireball" type="Area2D" groups=["attack"]]
+top_level = true
+light_mask = 5
+visibility_layer = 5
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_b8nad")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ikbec")
+frame_progress = 0.57008
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_prrqs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="snd_firebullet" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7e86l")

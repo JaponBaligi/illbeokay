@@ -22,7 +22,6 @@ buses/default_bus_layout="res://Textures/Themes/audiobus.tres"
 [autoload]
 
 UpgradeDb="*res://scenes/upgrade_db.tscn"
-MusicModeChanger="*res://scenes/MusicModeChanger.tscn"
 GameData="*res://scenes/game_data.tscn"
 
 [display]

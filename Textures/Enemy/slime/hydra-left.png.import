@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bao5psgn5sb7i"
-path="res://.godot/imported/hydra-left.png-edb4e8629507149cef50d26745789c6e.ctex"
+uid="uid://b4bay11h4guix"
+path="res://.godot/imported/Hydra-left.png-bd6569f900fd56ea7b2ee4980096831c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Enemy/slime/hydra-left.png"
-dest_files=["res://.godot/imported/hydra-left.png-edb4e8629507149cef50d26745789c6e.ctex"]
+source_file="res://Textures/Enemy/slime/Hydra-left.png"
+dest_files=["res://.godot/imported/Hydra-left.png-bd6569f900fd56ea7b2ee4980096831c.ctex"]
 
 [params]
 

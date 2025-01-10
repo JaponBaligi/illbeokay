@@ -37,15 +37,15 @@ func _ready():
 			knockback_amount = 100
 			attack_size = 1.0 * (1 + player.spell_size)
 		3:
-			hp = 2
+			hp = 1
 			speed = 100
-			damage = 8
+			damage = 5
 			knockback_amount = 100
 			attack_size = 1.0 * (1 + player.spell_size)
 		4:
-			hp = 2
+			hp = 1
 			speed = 100
-			damage = 8
+			damage = 5
 			knockback_amount = 100
 			attack_size = 1.0 * (1 + player.spell_size)
 	var tween = create_tween()
@@ -56,7 +56,7 @@ func _physics_process(delta):
 	# Mermiyi fare doğrultusunda hareket ettir
 	position += angle * speed * delta
 # Eğer hedefe çok yaklaşırsak mermiyi yok et
-	if global_position.distance_to(player.get_global_mouse_position()) < 0:
+	if global_position.distance_to(player.get_global_mouse_position()) < 3:
 		queue_free()
 
 func enemy_hit(charge = 1):

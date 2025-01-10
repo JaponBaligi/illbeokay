@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 
 @export var movement_speed = 20.0
-@export var hp = 10.0
+@export var hp = 50.0
 @export var knockback_recovery = 3.5
-@export var exp = 1
-@export var enemy_damage = 1
+@export var exp = 3
+@export var enemy_damage = 2
+
 var knockback = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -20,14 +21,13 @@ signal remove_from_array(object)
 
 func _ready():
 	hitBox.damage = enemy_damage
-	
+
 func _physics_process(_delta):
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_recovery * _delta)
 	
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movement_speed + knockback
 	move_and_slide()
-
 	if direction.x > 0.1:
 		sprite.flip_h = false
 		sprite.play("slime_move_right")
@@ -37,7 +37,6 @@ func _physics_process(_delta):
 
 func death():
 	emit_signal("remove_from_array",self)
-	sprite.play("slime_death")
 	var new_exp = exp_orb.instantiate()
 	new_exp.global_position = global_position
 	new_exp.exp = exp

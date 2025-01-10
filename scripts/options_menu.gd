@@ -15,4 +15,3 @@ func _ready():
 func _on_exit_pressed():
 	quit_options_menu.emit()
 	set_process(false)
-	

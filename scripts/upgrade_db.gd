@@ -134,7 +134,7 @@ const UPGRADES = {
 	"speed1": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Running matters,Movement speed +%20",
+		"details": "Running matters,Movement speed increased by 10 units",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
@@ -142,7 +142,7 @@ const UPGRADES = {
 	"speed2": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Are you going to race with cheetahs?Movement speed +%30",
+		"details": "Are you going to race with cheetahs?Movement speed increased by 18 units",
 		"level": "Level: 2",
 		"prerequisite": ["speed1"],
 		"type": "upgrade"
@@ -150,7 +150,7 @@ const UPGRADES = {
 	"speed3": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Nearly speed of light there,movement speed +%40",
+		"details": "Nearly speed of light there,movement speed increased by 25 units",
 		"level": "Level: 3",
 		"prerequisite": ["speed2"],
 		"type": "upgrade"
@@ -158,7 +158,7 @@ const UPGRADES = {
 	"speed4": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Now you need to wait for light to catch you,movement speed +%50",
+		"details": "Now you need to wait for light to catch you,movement speed increased by 30 units",
 		"level": "Level: 4",
 		"prerequisite": ["speed3"],
 		"type": "upgrade"
@@ -246,7 +246,7 @@ const UPGRADES = {
 		"firebreath1": {
 		"icon": WEAPON_PATH + "firebreath.png",
 		"displayname": "Fire Breath",
-		"details": "A fire comes out of your body from one direction.",
+		"details": "A fire comes out of your body from one direction(like a fart).",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "weapon"
@@ -255,7 +255,7 @@ const UPGRADES = {
 		"firebreath2": {
 		"icon": WEAPON_PATH + "firebreath.png",
 		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"details": "Adds 1 more direction(finally mouth-like) .",
 		"level": "Level: 2",
 		"prerequisite": ["firebreath1"],
 		"type": "weapon"
@@ -263,7 +263,7 @@ const UPGRADES = {
 		"firebreath3": {
 		"icon": WEAPON_PATH + "firebreath.png",
 		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"details": "Adds 1 more direction(no comment) .",
 		"level": "Level: 3",
 		"prerequisite": ["firebreath2"],
 		"type": "weapon"
@@ -271,7 +271,7 @@ const UPGRADES = {
 		"firebreath4": {
 		"icon": WEAPON_PATH + "firebreath.png",
 		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
+		"details": "Adds 1 more direction.",
 		"level": "Level: 4",
 		"prerequisite": ["firebreath3"],
 		"type": "weapon"
@@ -351,7 +351,7 @@ const UPGRADES = {
 		"thirdeye3": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
-		"details": "Expands your vision little bit and reduces cooldown by %10.",
+		"details": "Expands your vision little bit and reduces cooldown by %5.",
 		"level": "Level: 3",
 		"prerequisite": ["thirdeye2"],
 		"type": "upgrade"
@@ -359,7 +359,7 @@ const UPGRADES = {
 		"thirdeye4": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
-		"details": "Expands your vision little bit and reduces cooldown by %10.",
+		"details": "Expands your vision little bit and reduces cooldown by %5.",
 		"level": "Level: 4",
 		"prerequisite": ["thirdeye3"],
 		"type": "upgrade"

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var movement_speed = 40.0
-var hp = 80
-var maxhp = 80
+var movement_speed : float = 50.0
+var hp = 101
+var maxhp = 101
 var last_movement = Vector2.UP
 var time = 0
 var aiming_mode = ""
@@ -27,6 +27,7 @@ var staff = preload("res://scenes/staff.tscn")
 @onready var FireBreath = preload("res://scenes/fire_breath.tscn")
 @onready var FireBreathTimer = get_node("%FireBreathTimer")
 @onready var FireBreathAttackTimer = get_node("%FireBreathAttackTimer")
+
 #UPGRADE SECTION
 
 var collected_upgrades = []
@@ -74,7 +75,9 @@ var firebreath_attackspeed = 4.5
 # Skull Chamber
 
 var skull_level = 0
+var skull_ammo = 0
 var skull_scene = preload("res://scenes/skullchamber.tscn")
+@onready var SkullContainer = $Attack/SkullContainer
 
 # Enemy Related
 
@@ -102,6 +105,7 @@ var enemy_close = []
 
 
 func _ready():
+	print("Ready function triggered!")
 	reload_timer.set_wait_time(1.5)
 	reload_timer.connect("timeout", Callable(self,"_on_reload_timer_timeout"))
 	add_child(reload_timer)
@@ -110,7 +114,6 @@ func _ready():
 	set_expbar(exp_value, calculate_expcap())
 	_on_hurt_box_hurt(0,0,0)
 	aiming_mode = GameData.aiming_mode
-	get_node("/root/MusicModeChanger").start_music()
 	$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animation_finished"))
 
 func _physics_process(delta):
@@ -157,11 +160,14 @@ func attack():
 		FireBreathTimer.wait_time = firebreath_attackspeed * (1-spell_cdr)
 	if FireBreathAttackTimer.is_stopped():
 		FireBreathTimer.start()
+	if skull_level > 0:
+		spawn_skull()
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0,999.0) 
 	healthBar.max_value = maxhp
 	healthBar.value = hp
+	print("Current HP: ",hp)
 	if hp <= 0:
 		death()
 
@@ -209,7 +215,7 @@ func _on_nebula_attack_timer_timeout():
 
 func spawn_staff():
 	var get_staff_total = staffBase.get_child_count()
-	var count_spawns = staff_ammo + additional_attacks - get_staff_total
+	var count_spawns = staff_ammo - get_staff_total
 	while count_spawns > 0:
 		var staff_spawn = staff.instantiate()
 		staff_spawn.global_position = global_position
@@ -220,18 +226,19 @@ func spawn_staff():
 		if i.has_method("update_staff"):
 			i.update_staff()
 
-func skull_level_up():
-	skull_level += 1
-	spawn_skull()
-
 func spawn_skull():
-	for i in range(skull_level):  # Her seviyeye göre kurukafa ekle
-		var new_skull = preload("res://scenes/skullchamber.tscn").instantiate()
-		new_skull.position = position 
-		new_skull.skull_index = i  # Her kurukafaya benzersiz bir indeks atayın
-		get_parent().add_child(new_skull) 
-		new_skull.level = skull_level 
-		new_skull.update_skull() 
+	var player_position: Vector2 = Vector2.ZERO
+	var get_skull_total = SkullContainer.get_child_count()
+	var count_skulls = skull_ammo - get_skull_total
+	while count_skulls > 0:
+		var skull_spawn = skull_scene.instantiate()
+		skull_spawn.global_position = player_position
+		SkullContainer.add_child(skull_spawn)
+		count_skulls -= 1   
+	var get_skulls = SkullContainer.get_children()
+	for i in get_skulls:
+		if i.has_method("update_skulls"):
+			i.update_skulls()
 
 func _on_fire_breath_timer_timeout():
 	firebreath_ammo += firebreath_baseammo
@@ -397,7 +404,7 @@ func upgrade_character(upgrade):
 			nebula_baseammo += 1
 		"staff1":
 			staff_level = 1
-			staff_ammo = 1
+			staff_ammo  = 1
 		"staff2":
 			staff_level = 2
 		"staff3":
@@ -406,19 +413,14 @@ func upgrade_character(upgrade):
 			staff_level = 4
 		"armor1","armor2","armor3","armor4":
 			armor += 1
-		#current movement speed = 40
 		"speed1":
-			movement_speed += 8.0
-			#current movement speed = 48
+			movement_speed += 10 
 		"speed2":
-			movement_speed += 14.0
-			#current movement speed = 62
+			movement_speed += 18
 		"speed3":
-			movement_speed += 24.0
-			#current movement speed = 86
+			movement_speed += 25
 		"speed4":
-			movement_speed += 43
-			#current movement speed = 129 
+			movement_speed += 30
 		"expand1","expand2","expand3","expand4":
 			spell_size += 0.10
 		"scroll1","scroll2","scroll3","scroll4":
@@ -435,17 +437,14 @@ func upgrade_character(upgrade):
 		"firebreath2":
 			firebreath_baseammo += 1
 			firebreath_level = 2
-			firebreath_attackspeed -= 0.2
 			firebreath_directions.append(270)
 		"firebreath3":
 			firebreath_baseammo += 1
 			firebreath_level = 3
-			firebreath_attackspeed -= 0.2
 			firebreath_directions.append(0)
 		"firebreath4":
 			firebreath_baseammo += 1
 			firebreath_level = 4
-			firebreath_attackspeed -= 0.2
 			firebreath_directions.append(180)
 		"collector1":
 			grabAreaCollision.shape.radius *= 1.25
@@ -455,20 +454,19 @@ func upgrade_character(upgrade):
 			grabAreaCollision.shape.radius *= 1.50
 		"skull1":
 			skull_level = 1
-			spawn_skull()
+			skull_ammo  = 1
 		"skull2":
 			skull_level = 2
-			spawn_skull()
+			skull_ammo += 1
 		"skull3":
 			skull_level = 3
-			spawn_skull()
+			skull_ammo += 1
 		"skull4":
 			skull_level = 4
-			spawn_skull()
+			skull_ammo += 1
 		"thirdeye1","thirdeye2","thirdeye3","thirdeye4":
 			fov.texture_scale += 0.1
 			spell_cdr += 0.05
-		
 	attack()
 	var option_children = upgradeOptions.get_children()
 	for i in option_children:
@@ -523,14 +521,8 @@ func death():
 	var tween = deathPanel.create_tween()
 	tween.tween_property(deathPanel,"position",Vector2(180,50),3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
-	var timer = Timer.new()
-	timer.set_wait_time(3.0)  # Delay of 3 seconds, adjust as needed
-	timer.one_shot = true
-	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
-	add_child(timer)
-	timer.start()
-	if time >= 300:
-		lblResult.text = "You WON!!!"
+	if time >= 900:
+		lblResult.text = "You MADE IT !!!"
 		sndVictory.play()
 	else:
 		lblResult.text = "Next Time Buddy!"
@@ -541,5 +533,4 @@ func _on_timer_timeout():
 
 func _on_btn_menu_click_end():
 	get_tree().paused = false
-	MusicModeChanger.stop_music()
 	var _level = get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

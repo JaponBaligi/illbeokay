@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b4mjy62osxtg6"]
+[gd_scene load_steps=16 format=3 uid="uid://b4mjy62osxtg6"]
 
 [ext_resource type="Theme" uid="uid://8ic7fva1q061" path="res://Textures/Themes/options.tres" id="1_26re1"]
 [ext_resource type="Script" path="res://scripts/settings_tab_container.gd" id="1_hr8c5"]
@@ -9,15 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cffa5ouv82itt" path="res://Textures/GUI/UI-Elements/options-ui/checkbox-hover.png" id="5_e208s"]
 [ext_resource type="PackedScene" uid="uid://dxb7itt5q61sh" path="res://scenes/window_mode_button.tscn" id="8_47cne"]
 [ext_resource type="PackedScene" uid="uid://3vtk1c761tvj" path="res://scenes/resolution_mode_button.tscn" id="9_gajix"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t4xsu"]
-texture = ExtResource("3_bfufj")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2888r"]
-texture = ExtResource("4_wh24i")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_34smv"]
-texture = ExtResource("5_e208s")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdbt3"]
 texture = ExtResource("3_bfufj")
@@ -73,6 +64,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = 18.0
+offset_right = -15.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 44
@@ -102,68 +97,6 @@ bus_name = "Music"
 [node name="Audio_Slider_Settings3" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_r04n0")]
 layout_mode = 2
 bus_name = "Sfx"
-
-[node name="checkbox_chill" type="CheckBox" parent="TabContainer/Sound"]
-layout_mode = 0
-offset_left = 291.0
-offset_top = 162.0
-offset_right = 307.0
-offset_bottom = 178.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_t4xsu")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2888r")
-theme_override_styles/hover = SubResource("StyleBoxTexture_34smv")
-
-[node name="Label" type="Label" parent="TabContainer/Sound/checkbox_chill"]
-layout_mode = 0
-offset_left = 20.0
-offset_right = 60.0
-offset_bottom = 17.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Chill"
-
-[node name="checkbox_hyped" type="CheckBox" parent="TabContainer/Sound"]
-layout_mode = 0
-offset_left = 369.0
-offset_top = 162.0
-offset_right = 385.0
-offset_bottom = 178.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_t4xsu")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2888r")
-theme_override_styles/hover = SubResource("StyleBoxTexture_34smv")
-
-[node name="Label" type="Label" parent="TabContainer/Sound/checkbox_hyped"]
-layout_mode = 0
-offset_left = 20.0
-offset_right = 60.0
-offset_bottom = 17.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Hyped"
-
-[node name="Label" type="Label" parent="TabContainer/Sound"]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 162.0
-offset_right = 150.0
-offset_bottom = 180.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_vmdwk")
-text = "Music Type :"
-
-[node name="VSeparator" type="VSeparator" parent="TabContainer/Sound"]
-layout_mode = 0
-offset_left = 227.0
-offset_top = 162.0
-offset_right = 231.0
-offset_bottom = 179.0
-
-[node name="VSeparator2" type="VSeparator" parent="TabContainer/Sound"]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 162.0
-offset_right = 477.0
-offset_bottom = 179.0
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 visible = false

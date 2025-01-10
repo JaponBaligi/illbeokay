@@ -1,3 +1,3 @@
 extends Node
 
-var aiming_mode = "manual"
+var aiming_mode = "automatic"

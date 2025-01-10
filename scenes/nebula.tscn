@@ -440,8 +440,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1dejf"]
-radius = 30.0
-height = 60.0
+radius = 10.0
+height = 20.0
 
 [node name="Nebula" type="Area2D" groups=["attack"]]
 top_level = true
@@ -453,11 +453,11 @@ collision_mask = 0
 script = ExtResource("1_3xsh6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -9.53674e-07)
-scale = Vector2(0.83, 0.795)
+position = Vector2(-0.515, -0.745)
+scale = Vector2(0.287, 0.275)
 sprite_frames = SubResource("SpriteFrames_c7t2o")
 animation = &"default_nebula"
-frame_progress = 0.751513
+frame_progress = 0.838995
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

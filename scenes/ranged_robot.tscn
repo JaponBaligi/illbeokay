@@ -1,0 +1,150 @@
+[gd_scene load_steps=21 format=3 uid="uid://brkd1c36ebat1"]
+
+[ext_resource type="Script" path="res://scripts/ranged_robot.gd" id="1_nky6u"]
+[ext_resource type="Texture2D" uid="uid://bxg3470gg4xh1" path="res://Textures/Enemy/ranged_robot/ranged_robot_attack.png" id="2_tnopq"]
+[ext_resource type="Texture2D" uid="uid://c8r10qw2a4of" path="res://Textures/Enemy/ranged_robot/ranged_robot_move.png" id="3_luc3p"]
+[ext_resource type="PackedScene" uid="uid://42qup1p37ood" path="res://scenes/hurt_box.tscn" id="5_6ibey"]
+[ext_resource type="PackedScene" uid="uid://b5o0hduemvf04" path="res://scenes/hit_box.tscn" id="6_6qv5c"]
+[ext_resource type="AudioStream" uid="uid://ds7u5dr63fur6" path="res://Audio/sfx/ranged_robot_death.wav" id="6_8doed"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5yoh"]
+atlas = ExtResource("2_tnopq")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgg0i"]
+atlas = ExtResource("2_tnopq")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o2fl"]
+atlas = ExtResource("2_tnopq")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8xxv"]
+atlas = ExtResource("2_tnopq")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4iqi"]
+atlas = ExtResource("3_luc3p")
+region = Rect2(0, 0, 15, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7dlb"]
+atlas = ExtResource("3_luc3p")
+region = Rect2(15, 0, 15, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnuy4"]
+atlas = ExtResource("3_luc3p")
+region = Rect2(30, 0, 15, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvrxs"]
+atlas = ExtResource("3_luc3p")
+region = Rect2(0, 30, 15, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cul0g"]
+atlas = ExtResource("3_luc3p")
+region = Rect2(15, 30, 15, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2euiw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5yoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgg0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o2fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8xxv")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4iqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7dlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnuy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvrxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cul0g")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cm135"]
+radius = 5.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ef3hn"]
+radius = 7.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7vu4"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bkgbj"]
+radius = 160.003
+
+[node name="RangedRobot" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 5
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_nky6u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2.38419e-07)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_2euiw")
+animation = &"attack"
+
+[node name="Body" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cm135")
+
+[node name="HurtBox" parent="." instance=ExtResource("5_6ibey")]
+collision_layer = 4
+collision_mask = 4
+HurtBoxType = 1
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_ef3hn")
+
+[node name="HitBox" parent="." instance=ExtResource("6_6qv5c")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CapsuleShape2D_d7vu4")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+shape = SubResource("CircleShape2D_bkgbj")
+
+[node name="AttackCooldown" type="Timer" parent="PlayerDetectionArea"]
+one_shot = true
+
+[node name="ranged_robot_death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8doed")
+volume_db = -17.0
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
+[connection signal="timeout" from="PlayerDetectionArea/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

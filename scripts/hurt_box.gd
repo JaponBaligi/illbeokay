@@ -32,12 +32,15 @@ func _on_area_entered(area):
 			var knockback = 1
 			if not area.get("angle") == null:
 				angle = area.angle
-				if not area.get("knocback_amount") == null:
+				if not area.get("knockback_amount") == null:
 					knockback = area.knockback_amount
 					
 			emit_signal("hurt",damage,angle,knockback)
 			if area.has_method("enemy_hit"):
 				area.enemy_hit(1)
+			emit_signal("hurt",damage,angle,knockback)
+			if area.has_method("player_hit"):
+				area.player_hit(1)
 
 func remove_from_list(object):
 	if hit_once_array.has(object):

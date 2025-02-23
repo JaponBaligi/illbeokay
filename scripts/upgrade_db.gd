@@ -134,7 +134,7 @@ const UPGRADES = {
 	"speed1": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Running matters,Movement speed +%20",
+		"details": "Running matters,Movement speed increased by 10 units",
 		"level": "Level: 1",
 		"prerequisite": [],
 		"type": "upgrade"
@@ -142,7 +142,7 @@ const UPGRADES = {
 	"speed2": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Are you going to race with cheetahs?Movement speed +%30",
+		"details": "Are you going to race with cheetahs?Movement speed increased by 18 units",
 		"level": "Level: 2",
 		"prerequisite": ["speed1"],
 		"type": "upgrade"
@@ -150,7 +150,7 @@ const UPGRADES = {
 	"speed3": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Nearly speed of light there,movement speed +%40",
+		"details": "Nearly speed of light there,movement speed increased by 25 units",
 		"level": "Level: 3",
 		"prerequisite": ["speed2"],
 		"type": "upgrade"
@@ -158,7 +158,7 @@ const UPGRADES = {
 	"speed4": {
 		"icon": ICON_PATH + "boots.png",
 		"displayname": "Speed",
-		"details": "Now you need to wait for light to catch you,movement speed +%50",
+		"details": "Now you need to wait for light to catch you,movement speed increased by 30 units",
 		"level": "Level: 4",
 		"prerequisite": ["speed3"],
 		"type": "upgrade"
@@ -243,40 +243,8 @@ const UPGRADES = {
 		"prerequisite": ["ring1","fireball4","nebula4","staff4"],
 		"type": "upgrade"
 	},
-		"firebreath1": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "A fire comes out of your body from one direction.",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "weapon"
-	},
-	
-		"firebreath2": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
-		"level": "Level: 2",
-		"prerequisite": ["firebreath1"],
-		"type": "weapon"
-	},
-		"firebreath3": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
-		"level": "Level: 3",
-		"prerequisite": ["firebreath2"],
-		"type": "weapon"
-	},
-		"firebreath4": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction and cooldown reduced by 0.2 seconds.",
-		"level": "Level: 4",
-		"prerequisite": ["firebreath3"],
-		"type": "weapon"
-	},
-		"collector1": {
+
+	"collector1": {
 		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %25",
@@ -284,7 +252,7 @@ const UPGRADES = {
 		"prerequisite": [],
 		"type": "upgrade"
 	},
-		"collector2": {
+	"collector2": {
 		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %35",
@@ -292,7 +260,7 @@ const UPGRADES = {
 		"prerequisite": ["collector1"],
 		"type": "upgrade"
 	},
-		"collector3": {
+	"collector3": {
 		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %50",
@@ -300,39 +268,7 @@ const UPGRADES = {
 		"prerequisite": ["collector2"],
 		"type": "upgrade"
 	},
-		"skull1": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "A skull rotating around your orbit,that's cool.",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "weapon"
-	},
-		"skull2": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "Another skull added your orbit, size and damage increased 25%.",
-		"level": "Level: 2",
-		"prerequisite": ["skull1"],
-		"type": "weapon"
-	},
-		"skull3": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "Another skull added your orbit, size and damage increased 25%.",
-		"level": "Level: 3",
-		"prerequisite": ["skull2"],
-		"type": "weapon"
-	},
-		"skull4": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "Another skull added your orbit, size and damage increased 25%.",
-		"level": "Level: 4",
-		"prerequisite": ["skull3"],
-		"type": "weapon"
-	},
-		"thirdeye1": {
+	"thirdeye1": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
 		"details": "Expands your vision little bit and reduces cooldown by %5.",
@@ -340,7 +276,7 @@ const UPGRADES = {
 		"prerequisite": [],
 		"type": "upgrade"
 	},
-		"thirdeye2": {
+	"thirdeye2": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
 		"details": "Expands your vision little bit and reduces cooldown by %5.",
@@ -348,23 +284,23 @@ const UPGRADES = {
 		"prerequisite": ["thirdeye1"],
 		"type": "upgrade"
 	},
-		"thirdeye3": {
+	"thirdeye3": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
-		"details": "Expands your vision little bit and reduces cooldown by %10.",
+		"details": "Expands your vision little bit and reduces cooldown by %5.",
 		"level": "Level: 3",
 		"prerequisite": ["thirdeye2"],
 		"type": "upgrade"
 	},
-		"thirdeye4": {
+	"thirdeye4": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
-		"details": "Expands your vision little bit and reduces cooldown by %10.",
+		"details": "Expands your vision little bit and reduces cooldown by %5.",
 		"level": "Level: 4",
 		"prerequisite": ["thirdeye3"],
 		"type": "upgrade"
 	},
-		"food": {
+	"food": {
 		"icon": ICON_PATH + "burger.png",
 		"displayname": "Burger",
 		"details": "An ancient developer food gives you 30 health",

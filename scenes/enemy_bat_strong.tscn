@@ -1,34 +1,37 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtoodrsop6qus"]
+[gd_scene load_steps=17 format=3 uid="uid://dtoodrsop6qus"]
 
 [ext_resource type="Script" path="res://scripts/enemy_bat_strong.gd" id="1_xylgi"]
-[ext_resource type="Texture2D" uid="uid://duc0kb64w1k5e" path="res://Textures/Enemy/bat/bat.32x32-frames.png" id="2_yiwh1"]
+[ext_resource type="Texture2D" uid="uid://xuw2f1orrx54" path="res://Textures/Enemy/bat/bat.32x32-frames.png" id="2_yiwh1"]
 [ext_resource type="PackedScene" uid="uid://42qup1p37ood" path="res://scenes/hurt_box.tscn" id="3_q1j08"]
 [ext_resource type="PackedScene" uid="uid://b5o0hduemvf04" path="res://scenes/hit_box.tscn" id="4_3kr28"]
 [ext_resource type="AudioStream" uid="uid://c0a6x4o8l5jlj" path="res://Audio/sfx/bat_strong_death.wav" id="5_gt4q6"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6m1yo"]
+load_path = "res://.godot/imported/bat.32x32-frames.png-da6cc449584d60dd2f5b5c51e148049f.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht4pu"]
-atlas = ExtResource("2_yiwh1")
+atlas = SubResource("CompressedTexture2D_6m1yo")
 region = Rect2(160, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iucsi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj7gq"]
 atlas = ExtResource("2_yiwh1")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yymbf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt3fg"]
 atlas = ExtResource("2_yiwh1")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(64, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p5tkm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_11sx5"]
 atlas = ExtResource("2_yiwh1")
-region = Rect2(64, 32, 32, 32)
+region = Rect2(128, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkqop"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3vpd"]
 atlas = ExtResource("2_yiwh1")
-region = Rect2(96, 32, 32, 32)
+region = Rect2(192, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4p8tn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_isuk8"]
 atlas = ExtResource("2_yiwh1")
-region = Rect2(128, 32, 32, 32)
+region = Rect2(256, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kk5g6"]
 animations = [{
@@ -42,19 +45,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iucsi")
+"texture": SubResource("AtlasTexture_pj7gq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yymbf")
+"texture": SubResource("AtlasTexture_dt3fg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p5tkm")
+"texture": SubResource("AtlasTexture_11sx5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dkqop")
+"texture": SubResource("AtlasTexture_s3vpd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4p8tn")
+"texture": SubResource("AtlasTexture_isuk8")
 }],
 "loop": true,
 "name": &"fly",
@@ -62,16 +65,16 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3whu"]
-radius = 2.0
-height = 4.0
+radius = 4.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_va5u1"]
-radius = 2.0
-height = 4.0
+radius = 4.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17s6n"]
-radius = 2.0
-height = 4.0
+radius = 4.0
+height = 14.0
 
 [node name="enemy_bat_strong" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 5
@@ -80,12 +83,12 @@ motion_mode = 1
 script = ExtResource("1_xylgi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_kk5g6")
 animation = &"fly"
+frame_progress = 0.45021
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_s3whu")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_q1j08")]
@@ -94,7 +97,7 @@ collision_mask = 4
 HurtBoxType = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-2, 0)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_va5u1")
 
 [node name="HitBox" parent="." instance=ExtResource("4_3kr28")]
@@ -102,7 +105,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(-2, 0)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_17s6n")
 
 [node name="bat_strong_death" type="AudioStreamPlayer2D" parent="."]

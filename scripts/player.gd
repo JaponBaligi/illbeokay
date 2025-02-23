@@ -72,13 +72,6 @@ var firebreath_attackspeed = 4.5
 
 @onready var fov = $FOV
 
-# Skull Chamber
-
-var skull_level = 0
-var skull_ammo = 0
-var skull_scene = preload("res://scenes/skullchamber.tscn")
-@onready var SkullContainer = $Attack/SkullContainer
-
 # Enemy Related
 
 var enemy_close = []
@@ -105,7 +98,6 @@ var enemy_close = []
 
 
 func _ready():
-	print("Ready function triggered!")
 	reload_timer.set_wait_time(1.5)
 	reload_timer.connect("timeout", Callable(self,"_on_reload_timer_timeout"))
 	add_child(reload_timer)
@@ -160,8 +152,6 @@ func attack():
 		FireBreathTimer.wait_time = firebreath_attackspeed * (1-spell_cdr)
 	if FireBreathAttackTimer.is_stopped():
 		FireBreathTimer.start()
-	if skull_level > 0:
-		spawn_skull()
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0,999.0) 
@@ -225,20 +215,6 @@ func spawn_staff():
 	for i in get_staff:
 		if i.has_method("update_staff"):
 			i.update_staff()
-
-func spawn_skull():
-	var player_position: Vector2 = Vector2.ZERO
-	var get_skull_total = SkullContainer.get_child_count()
-	var count_skulls = skull_ammo - get_skull_total
-	while count_skulls > 0:
-		var skull_spawn = skull_scene.instantiate()
-		skull_spawn.global_position = player_position
-		SkullContainer.add_child(skull_spawn)
-		count_skulls -= 1   
-	var get_skulls = SkullContainer.get_children()
-	for i in get_skulls:
-		if i.has_method("update_skulls"):
-			i.update_skulls()
 
 func _on_fire_breath_timer_timeout():
 	firebreath_ammo += firebreath_baseammo
@@ -378,6 +354,7 @@ func levelup():
 	get_tree().paused = true
 
 func upgrade_character(upgrade):
+	print("Gelen Upgrade: ", upgrade)
 	match upgrade:
 		"fireball1":
 			fireball_level = 1
@@ -452,18 +429,6 @@ func upgrade_character(upgrade):
 			grabAreaCollision.shape.radius *= 1.35
 		"collector3":
 			grabAreaCollision.shape.radius *= 1.50
-		"skull1":
-			skull_level = 1
-			skull_ammo  = 1
-		"skull2":
-			skull_level = 2
-			skull_ammo += 1
-		"skull3":
-			skull_level = 3
-			skull_ammo += 1
-		"skull4":
-			skull_level = 4
-			skull_ammo += 1
 		"thirdeye1","thirdeye2","thirdeye3","thirdeye4":
 			fov.texture_scale += 0.1
 			spell_cdr += 0.05

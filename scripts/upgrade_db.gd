@@ -300,38 +300,6 @@ const UPGRADES = {
 		"prerequisite": ["collector2"],
 		"type": "upgrade"
 	},
-		"skull1": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "A skull rotating around your orbit,that's cool.",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "weapon"
-	},
-		"skull2": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "Another skull added your orbit, size and damage increased 25%.",
-		"level": "Level: 2",
-		"prerequisite": ["skull1"],
-		"type": "weapon"
-	},
-		"skull3": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "Another skull added your orbit, size and damage increased 25%.",
-		"level": "Level: 3",
-		"prerequisite": ["skull2"],
-		"type": "weapon"
-	},
-		"skull4": {
-		"icon": WEAPON_PATH + "skull.png",
-		"displayname": "Skull Chamber",
-		"details": "Another skull added your orbit, size and damage increased 25%.",
-		"level": "Level: 4",
-		"prerequisite": ["skull3"],
-		"type": "weapon"
-	},
 		"thirdeye1": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",

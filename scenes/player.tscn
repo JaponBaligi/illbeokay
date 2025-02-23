@@ -290,7 +290,7 @@ collision_mask = 2
 position = Vector2(-0.112946, -1.03465)
 shape = SubResource("CapsuleShape2D_fgef5")
 
-[node name="Attack" type="Node" parent="."]
+[node name="Attack" type="Node2D" parent="."]
 
 [node name="FireBallTimer" type="Timer" parent="Attack"]
 unique_name_in_owner = true
@@ -324,9 +324,6 @@ autostart = true
 unique_name_in_owner = true
 wait_time = 2.5
 autostart = true
-
-[node name="SkullContainer" type="Node2D" parent="Attack"]
-unique_name_in_owner = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 visible = false

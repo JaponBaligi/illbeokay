@@ -24,9 +24,6 @@ var staff = preload("res://scenes/staff.tscn")
 @onready var NebulaTimer = get_node("%NebulaTimer")
 @onready var NebulaAttackTimer = get_node("%NebulaAttackTimer")
 @onready var staffBase = get_node("%StaffBase")
-@onready var FireBreath = preload("res://scenes/fire_breath.tscn")
-@onready var FireBreathTimer = get_node("%FireBreathTimer")
-@onready var FireBreathAttackTimer = get_node("%FireBreathAttackTimer")
 
 #UPGRADE SECTION
 
@@ -55,14 +52,6 @@ var nebula_level = 0
 
 var staff_ammo = 0
 var staff_level = 0
-
-#Fire Breath
-
-var firebreath_level = 0
-var firebreath_directions = []
-var firebreath_ammo = 0
-var firebreath_baseammo = 0
-var firebreath_attackspeed = 4.5
 
 #Collector Hand
 
@@ -148,10 +137,6 @@ func attack():
 		NebulaTimer.start()
 	if staff_level > 0:
 		spawn_staff()
-	if firebreath_level > 0:
-		FireBreathTimer.wait_time = firebreath_attackspeed * (1-spell_cdr)
-	if FireBreathAttackTimer.is_stopped():
-		FireBreathTimer.start()
 
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0,999.0) 
@@ -216,33 +201,6 @@ func spawn_staff():
 		if i.has_method("update_staff"):
 			i.update_staff()
 
-func _on_fire_breath_timer_timeout():
-	firebreath_ammo += firebreath_baseammo
-	FireBreathAttackTimer.start()
-
-func _on_fire_breath_attack_timer_timeout():
-	if firebreath_ammo and firebreath_level > 0:
-		for angle in firebreath_directions:
-			var firebreath_instance = FireBreath.instantiate()
-			firebreath_instance.angle_degrees = angle 
-			var rad = deg_to_rad(angle)
-			var offset = Vector2(cos(rad), sin(rad)) * 10
-			firebreath_instance.position = global_position + offset
-			firebreath_instance.rotation_degrees = angle
-			add_child(firebreath_instance)
-			var timer = Timer.new()
-			timer.wait_time = 3.0
-			timer.one_shot = true  # Timer'ın sadece bir kez çalışmasını sağla
-			firebreath_instance.add_child(timer)  # Timer'ı FireBreath instance'ına ekle
-			timer.connect("timeout", Callable(firebreath_instance, "queue_free"))  # Süre dolduğunda kaldır
-			timer.start()
-			firebreath_ammo -= 1
-			
-	if firebreath_ammo > 0:
-		FireBreathAttackTimer.start()
-	else:
-		FireBreathAttackTimer.stop()
-
 func _on_change_aim_mode(mode: String):
 	aiming_mode = GameData.aiming_mode
 
@@ -261,7 +219,7 @@ func get_closest_enemy():
 			closest_distance = distance_to_enemy
 			closest_enemy = enemy
 	return closest_enemy
-	
+
 func get_manual_target():
 	shoot_manual()
 	return get_global_mouse_position()
@@ -354,7 +312,6 @@ func levelup():
 	get_tree().paused = true
 
 func upgrade_character(upgrade):
-	print("Gelen Upgrade: ", upgrade)
 	match upgrade:
 		"fireball1":
 			fireball_level = 1
@@ -407,22 +364,6 @@ func upgrade_character(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
-		"firebreath1":
-			firebreath_baseammo += 1
-			firebreath_level = 1
-			firebreath_directions = [90]
-		"firebreath2":
-			firebreath_baseammo += 1
-			firebreath_level = 2
-			firebreath_directions.append(270)
-		"firebreath3":
-			firebreath_baseammo += 1
-			firebreath_level = 3
-			firebreath_directions.append(0)
-		"firebreath4":
-			firebreath_baseammo += 1
-			firebreath_level = 4
-			firebreath_directions.append(180)
 		"collector1":
 			grabAreaCollision.shape.radius *= 1.25
 		"collector2":

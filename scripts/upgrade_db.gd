@@ -243,40 +243,8 @@ const UPGRADES = {
 		"prerequisite": ["ring1","fireball4","nebula4","staff4"],
 		"type": "upgrade"
 	},
-		"firebreath1": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "A fire comes out of your body from one direction(like a fart).",
-		"level": "Level: 1",
-		"prerequisite": [],
-		"type": "weapon"
-	},
-	
-		"firebreath2": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction(finally mouth-like) .",
-		"level": "Level: 2",
-		"prerequisite": ["firebreath1"],
-		"type": "weapon"
-	},
-		"firebreath3": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction(no comment) .",
-		"level": "Level: 3",
-		"prerequisite": ["firebreath2"],
-		"type": "weapon"
-	},
-		"firebreath4": {
-		"icon": WEAPON_PATH + "firebreath.png",
-		"displayname": "Fire Breath",
-		"details": "Adds 1 more direction.",
-		"level": "Level: 4",
-		"prerequisite": ["firebreath3"],
-		"type": "weapon"
-	},
-		"collector1": {
+
+	"collector1": {
 		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %25",
@@ -284,7 +252,7 @@ const UPGRADES = {
 		"prerequisite": [],
 		"type": "upgrade"
 	},
-		"collector2": {
+	"collector2": {
 		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %35",
@@ -292,7 +260,7 @@ const UPGRADES = {
 		"prerequisite": ["collector1"],
 		"type": "upgrade"
 	},
-		"collector3": {
+	"collector3": {
 		"icon": ICON_PATH + "collectors_hand.png",
 		"displayname": "Collector's Hand",
 		"details": "Increases the pickup range by %50",
@@ -300,7 +268,7 @@ const UPGRADES = {
 		"prerequisite": ["collector2"],
 		"type": "upgrade"
 	},
-		"thirdeye1": {
+	"thirdeye1": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
 		"details": "Expands your vision little bit and reduces cooldown by %5.",
@@ -308,7 +276,7 @@ const UPGRADES = {
 		"prerequisite": [],
 		"type": "upgrade"
 	},
-		"thirdeye2": {
+	"thirdeye2": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
 		"details": "Expands your vision little bit and reduces cooldown by %5.",
@@ -316,7 +284,7 @@ const UPGRADES = {
 		"prerequisite": ["thirdeye1"],
 		"type": "upgrade"
 	},
-		"thirdeye3": {
+	"thirdeye3": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
 		"details": "Expands your vision little bit and reduces cooldown by %5.",
@@ -324,7 +292,7 @@ const UPGRADES = {
 		"prerequisite": ["thirdeye2"],
 		"type": "upgrade"
 	},
-		"thirdeye4": {
+	"thirdeye4": {
 		"icon": ICON_PATH + "thirdeye.png",
 		"displayname": "Third Eye",
 		"details": "Expands your vision little bit and reduces cooldown by %5.",
@@ -332,7 +300,7 @@ const UPGRADES = {
 		"prerequisite": ["thirdeye3"],
 		"type": "upgrade"
 	},
-		"food": {
+	"food": {
 		"icon": ICON_PATH + "burger.png",
 		"displayname": "Burger",
 		"details": "An ancient developer food gives you 30 health",

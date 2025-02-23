@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://b5u5clbryprtr"]
+[gd_scene load_steps=62 format=3 uid="uid://b5u5clbryprtr"]
 
 [ext_resource type="Texture2D" uid="uid://jjx3qcpsappc" path="res://Textures/Levels/Ground_rocks.png" id="1_araj3"]
 [ext_resource type="PackedScene" uid="uid://dvh4bkk5eayqc" path="res://scenes/player.tscn" id="2_l7cjv"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://dtoodrsop6qus" path="res://scenes/enemy_bat_strong.tscn" id="10_li1tr"]
 [ext_resource type="PackedScene" uid="uid://bvis2sf6sfcla" path="res://scenes/skeleton_fighter.tscn" id="11_bwjwj"]
 [ext_resource type="PackedScene" uid="uid://dlnkxls36gsdh" path="res://scenes/fire_worm.tscn" id="12_m16kp"]
-[ext_resource type="PackedScene" uid="uid://sq40undo10gk" path="res://scenes/exp_orb.tscn" id="16_qkhks"]
 
 [sub_resource type="GDScript" id="GDScript_vkago"]
 script/source = "extends Node2D
@@ -3751,7 +3750,3 @@ spawns = Array[ExtResource("6_x5yes")]([SubResource("Resource_pj7si"), SubResour
 stream = ExtResource("8_yi7li")
 volume_db = -15.0
 bus = &"Music"
-
-[node name="ExpOrb" parent="." instance=ExtResource("16_qkhks")]
-position = Vector2(-83, -44)
-exp = 100
